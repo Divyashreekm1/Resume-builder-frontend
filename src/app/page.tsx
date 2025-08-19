@@ -327,8 +327,8 @@ export default function ResumeBuilderPage() {
                   </div>
               </div>
 
-              <div id="print-container" className="p-4 border rounded-lg bg-secondary/30 min-h-[500px] max-h-[70vh] overflow-auto">
-                  <div className="bg-background shadow-lg mx-auto w-full h-full" style={{aspectRatio: '1 / 1.414'}}>
+              <div id="print-container" className="p-4 border rounded-lg bg-secondary/30 overflow-auto">
+                  <div className="bg-background shadow-lg mx-auto w-full" style={{aspectRatio: '1 / 1.414'}}>
                       {SelectedTemplateComponent && <SelectedTemplateComponent data={data} />}
                   </div>
               </div>
