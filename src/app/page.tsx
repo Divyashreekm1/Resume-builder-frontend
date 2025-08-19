@@ -29,13 +29,6 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import {
   PlusCircle,
   Trash2,
   Download,
@@ -48,7 +41,9 @@ import {
   Award,
   FolderKanban,
   Book,
+  Eye,
 } from 'lucide-react';
+import Link from 'next/link';
 
 import type { ResumeData, Experience, Education, Certificate, Project } from '@/lib/types';
 import { placeholderData } from '@/lib/placeholder-data';
@@ -320,6 +315,7 @@ export default function ResumeBuilderPage() {
                               key={template.name}
                               variant={selectedTemplate === template.name ? 'default' : 'outline'}
                               onClick={() => handleTemplateChange(template.name)}
+                              className="w-auto"
                           >
                               {template.label}
                           </Button>
@@ -327,8 +323,8 @@ export default function ResumeBuilderPage() {
                   </div>
               </div>
 
-              <div id="print-container" className="p-4 border rounded-lg bg-secondary/30 overflow-auto">
-                  <div className="bg-background shadow-lg mx-auto w-full" style={{aspectRatio: '1 / 1.414'}}>
+              <div id="print-container" className="p-4 border rounded-lg bg-secondary/30 overflow-auto h-[70vh]">
+                  <div className="bg-background shadow-lg mx-auto w-full h-full">
                       {SelectedTemplateComponent && <SelectedTemplateComponent data={data} />}
                   </div>
               </div>
@@ -336,6 +332,11 @@ export default function ResumeBuilderPage() {
               <Button onClick={handlePrint} className="w-full mt-4 text-lg py-6">
                 <Download className="mr-2 h-5 w-5" /> Download as PDF
               </Button>
+              <Link href="/samples" passHref>
+                <Button variant="link" className="w-full mt-2 text-primary">
+                    <Eye className="mr-2 h-5 w-5" /> View Sample Templates
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
