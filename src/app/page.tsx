@@ -48,6 +48,7 @@ import Link from 'next/link';
 
 import type { ResumeData, Experience, Education, Certificate, Project, Theme } from '@/lib/types';
 import { placeholderData } from '@/lib/placeholder-data';
+import { sampleData } from '@/lib/sample-data';
 import { themes as allThemes } from '@/lib/themes';
 
 import { getSuggestedCourses } from './actions';
@@ -82,17 +83,30 @@ function ResumeBuilder() {
     const templateParam = searchParams.get('template') as Template;
     const themeParam = searchParams.get('theme');
 
+    let newTemplate: Template | null = null;
     if (templateParam && templates.find(t => t.name === templateParam)) {
+      newTemplate = templateParam;
       setSelectedTemplate(templateParam);
-      setData(templateDataMapping[templateParam]);
     }
-
+    
     if (themeParam) {
       const foundTheme = allThemes.find(t => t.name === themeParam);
       if (foundTheme) {
         setSelectedTheme(foundTheme);
+        
+        // Use a default from sampleData if no specific logic is needed
+        // For simplicity, we'll use the first one if the title isn't passed.
+        const sampleKeys = Object.keys(sampleData) as (keyof typeof sampleData)[];
+        const randomSampleKey = sampleKeys[Math.floor(Math.random() * sampleKeys.length)];
+        const initialData = sampleData[randomSampleKey] || placeholderData;
+
+        // If a template was also passed, override the data for that template
+        setData(newTemplate ? (templateDataMapping[newTemplate] || initialData) : initialData);
       }
+    } else if (newTemplate) {
+         setData(templateDataMapping[newTemplate]);
     }
+
   }, [searchParams]);
 
   const handleTemplateChange = (newTemplate: Template) => {

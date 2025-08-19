@@ -3,15 +3,16 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { placeholderData } from '@/lib/placeholder-data';
+import { sampleData } from '@/lib/sample-data';
 import ModernTemplate from '@/components/templates/modern';
 import ClassicTemplate from '@/components/templates/classic';
 import { LogoIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Pencil } from 'lucide-react';
 import { themes } from '@/lib/themes';
+import type { ResumeData } from '@/lib/types';
 
-const sampleTitles = [
+const sampleTitles: (keyof typeof sampleData)[] = [
     "Software Engineer",
     "Data Analyst",
     "Accountant",
@@ -59,7 +60,9 @@ export default function SamplesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {themes.map((theme, index) => {
                     const templateType = index % 2 === 0 ? 'modern' : 'classic';
-                    const title = sampleTitles[index] || "Professional";
+                    const title = sampleTitles[index % sampleTitles.length];
+                    const data = sampleData[title] || sampleData["Software Engineer"];
+
                     return (
                         <div key={index} className="flex flex-col items-center gap-4 group">
                              <div className="text-center">
@@ -74,9 +77,9 @@ export default function SamplesPage() {
                                         </Button>
                                    </div>
                                    {templateType === 'modern' ? (
-                                     <ModernTemplate data={placeholderData} theme={theme} isPreview={true} />
+                                     <ModernTemplate data={data} theme={theme} isPreview={true} />
                                    ) : (
-                                     <ClassicTemplate data={placeholderData} theme={theme} isPreview={true} />
+                                     <ClassicTemplate data={data} theme={theme} isPreview={true} />
                                    )}
                                 </div>
                             </Link>
