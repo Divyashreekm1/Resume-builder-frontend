@@ -377,7 +377,7 @@ export default function ResumeBuilderPage() {
                   >
                     <CarouselContent>
                       {templates.map((template, index) => (
-                        <CarouselItem key={index} className="basis-1/3 md:basis-1/2 lg:basis-1/3">
+                        <CarouselItem key={index} className="basis-auto">
                           <div className="p-1">
                             <Button
                               variant={selectedTemplate === template.name ? 'default' : 'outline'}
