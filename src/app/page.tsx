@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useRef, useId, Fragment } from 'react';
@@ -18,7 +19,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Dialog,
   DialogContent,
@@ -28,6 +28,13 @@ import {
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import {
   PlusCircle,
   Trash2,
@@ -64,6 +71,16 @@ import type { SuggestCoursesOutput } from '@/ai/flows/suggest-courses';
 
 type Template = 'modern' | 'classic' | 'commerce' | 'sales' | 'engineer' | 'medical' | 'designer';
 
+const templates: { name: Template, label: string, component: React.FC<{data: ResumeData}> }[] = [
+    { name: 'modern', label: 'Modern', component: ModernTemplate },
+    { name: 'classic', label: 'Classic', component: ClassicTemplate },
+    { name: 'commerce', label: 'Commerce', component: CommerceTemplate },
+    { name: 'sales', label: 'Sales', component: SalesTemplate },
+    { name: 'engineer', label: 'Engineer', component: EngineerTemplate },
+    { name: 'medical', label: 'Medical', component: MedicalTemplate },
+    { name: 'designer', label: 'Designer', component: DesignerTemplate },
+];
+
 const templateDataMapping: Record<Template, ResumeData> = {
     modern: placeholderData,
     classic: placeholderData,
@@ -83,12 +100,11 @@ export default function ResumeBuilderPage() {
   const resumePreviewRef = useRef<HTMLDivElement>(null);
   const formId = useId();
 
-  const handleTemplateChange = (value: string) => {
-    const newTemplate = value as Template;
+  const handleTemplateChange = (newTemplate: Template) => {
     setSelectedTemplate(newTemplate);
     setData(templateDataMapping[newTemplate]);
   };
-
+  
   const handlePrint = () => {
     window.print();
   };
@@ -153,6 +169,8 @@ export default function ResumeBuilderPage() {
   const SectionIcon = ({ icon: Icon }: { icon: React.ElementType }) => (
     <Icon className="h-5 w-5 mr-2 text-primary" />
   );
+  
+  const SelectedTemplateComponent = templates.find(t => t.name === selectedTemplate)?.component;
 
   return (
     <>
@@ -248,7 +266,7 @@ export default function ResumeBuilderPage() {
                   <AccordionTrigger className="text-lg font-semibold"><SectionIcon icon={Lightbulb} />Skills</AccordionTrigger>
                   <AccordionContent className="p-1">
                     <Label htmlFor={`${formId}-skills`}>Skills (one per line)</Label>
-                    <Textarea id={`${formId}-skills`} value={data.skills.join('\n')} onChange={handleSkillsChange} placeholder="e.g. JavaScript&#10;React&#10;Node.js" rows={5}/>
+                    <Textarea id={`${formId}-skills`} value={data.skills.join('\n')} onChange={handleSkillsChange} placeholder="e.g. JavaScript\nReact\nNode.js" rows={5}/>
                     <div className="flex flex-wrap gap-2 mt-2">
                         {data.skills.map((skill, i) => (
                             <div key={i} className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-sm">{skill}</div>
@@ -314,42 +332,39 @@ export default function ResumeBuilderPage() {
               <CardDescription>Select a template and download your resume.</CardDescription>
             </CardHeader>
             <CardContent>
-              <Tabs value={selectedTemplate} onValueChange={handleTemplateChange} className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
-                  <TabsTrigger value="modern">Modern</TabsTrigger>
-                  <TabsTrigger value="classic">Classic</TabsTrigger>
-                  <TabsTrigger value="commerce">Commerce</TabsTrigger>
-                  <TabsTrigger value="sales">Sales</TabsTrigger>
-                  <TabsTrigger value="engineer">Engineer</TabsTrigger>
-                  <TabsTrigger value="medical">Medical</TabsTrigger>
-                  <TabsTrigger value="designer">Designer</TabsTrigger>
-                </TabsList>
-                <div className="mt-4 p-4 border rounded-lg bg-secondary/30 min-h-[500px] max-h-[70vh] overflow-auto">
-                    <div id="resume-preview" ref={resumePreviewRef} className="bg-background shadow-lg mx-auto" style={{aspectRatio: '1 / 1.414', width: '100%'}}>
-                        <TabsContent value="modern" className="mt-0">
-                            {selectedTemplate === 'modern' && <ModernTemplate data={data} />}
-                        </TabsContent>
-                        <TabsContent value="classic" className="mt-0">
-                            {selectedTemplate === 'classic' && <ClassicTemplate data={data} />}
-                        </TabsContent>
-                         <TabsContent value="commerce" className="mt-0">
-                            {selectedTemplate === 'commerce' && <CommerceTemplate data={data} />}
-                        </TabsContent>
-                        <TabsContent value="sales" className="mt-0">
-                            {selectedTemplate === 'sales' && <SalesTemplate data={data} />}
-                        </TabsContent>
-                        <TabsContent value="engineer" className="mt-0">
-                            {selectedTemplate === 'engineer' && <EngineerTemplate data={data} />}
-                        </TabsContent>
-                        <TabsContent value="medical" className="mt-0">
-                            {selectedTemplate === 'medical' && <MedicalTemplate data={data} />}
-                        </TabsContent>
-                        <TabsContent value="designer" className="mt-0">
-                            {selectedTemplate === 'designer' && <DesignerTemplate data={data} />}
-                        </TabsContent>
-                    </div>
-                </div>
-              </Tabs>
+              <div className="mb-4">
+                  <Carousel
+                    opts={{
+                      align: "start",
+                    }}
+                    className="w-full"
+                  >
+                    <CarouselContent>
+                      {templates.map((template, index) => (
+                        <CarouselItem key={index} className="basis-1/3 md:basis-1/2 lg:basis-1/3">
+                          <div className="p-1">
+                            <Button
+                              variant={selectedTemplate === template.name ? 'default' : 'outline'}
+                              className="w-full"
+                              onClick={() => handleTemplateChange(template.name)}
+                            >
+                              {template.label}
+                            </Button>
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </Carousel>
+              </div>
+
+              <div className="p-4 border rounded-lg bg-secondary/30 min-h-[500px] max-h-[70vh] overflow-auto">
+                  <div id="resume-preview" ref={resumePreviewRef} className="bg-background shadow-lg mx-auto" style={{aspectRatio: '1 / 1.414', width: '100%'}}>
+                      {SelectedTemplateComponent && <SelectedTemplateComponent data={data} />}
+                  </div>
+              </div>
+              
               <Button onClick={handlePrint} className="w-full mt-4 text-lg py-6">
                 <Download className="mr-2 h-5 w-5" /> Download as PDF
               </Button>
@@ -389,3 +404,5 @@ export default function ResumeBuilderPage() {
     </>
   );
 }
+
+    
