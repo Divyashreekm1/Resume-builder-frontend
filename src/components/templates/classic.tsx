@@ -13,7 +13,7 @@ const Section = ({ title, icon: Icon, children, primaryColor }: { title: string;
     </div>
 );
 
-export default function ClassicTemplate({ data, theme }: TemplateProps) {
+export default function ClassicTemplate({ data, theme, isPreview = false }: TemplateProps) {
     const primaryColor = theme?.primary || 'hsl(var(--primary))';
     const backgroundColor = theme?.bg || '#ffffff';
     const textColor = theme?.text || '#333333';
@@ -90,7 +90,7 @@ export default function ClassicTemplate({ data, theme }: TemplateProps) {
                         <div key={proj.id} className="mb-2">
                             <h3 className="font-bold text-sm flex items-center">
                                 {proj.name} 
-                                {proj.link && 
+                                {proj.link && !isPreview &&
                                     <a href={`https://${proj.link.replace(/^https?:\/\//, '')}`} target="_blank" rel="noopener noreferrer" className="font-normal hover:underline ml-2" style={{color: primaryColor}}>
                                         <LinkIcon className="inline h-3 w-3" />
                                     </a>

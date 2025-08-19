@@ -11,7 +11,7 @@ const Section = ({ title, icon: Icon, children, primaryColor }: { title: string;
     </div>
 );
 
-export default function ModernTemplate({ data, theme }: TemplateProps) {
+export default function ModernTemplate({ data, theme, isPreview = false }: TemplateProps) {
     const primaryColor = theme?.primary || 'hsl(var(--primary))';
     const backgroundColor = theme?.bg || '#ffffff';
     const textColor = theme?.text || '#333333';
@@ -81,7 +81,7 @@ export default function ModernTemplate({ data, theme }: TemplateProps) {
                     <Section title="Projects" icon={FolderKanban} primaryColor={primaryColor}>
                         {data.projects.map(proj => (
                             <div key={proj.id} className="mb-2">
-                                <h3 className="font-bold text-sm flex items-center">{proj.name} {proj.link && <a href={`https://${proj.link}`} className="font-normal hover:underline ml-1" style={{color: primaryColor}}><LinkIcon className="inline h-3 w-3" /></a>}</h3>
+                                <h3 className="font-bold text-sm flex items-center">{proj.name} {proj.link && !isPreview && <a href={`https://${proj.link}`} className="font-normal hover:underline ml-1" style={{color: primaryColor}}><LinkIcon className="inline h-3 w-3" /></a>}</h3>
                                 <p className="text-[11px]">{proj.description}</p>
                             </div>
                         ))}

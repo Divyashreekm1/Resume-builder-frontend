@@ -47,9 +47,9 @@ export default function SamplesPage() {
                                         </Button>
                                    </div>
                                    {templateType === 'modern' ? (
-                                     <ModernTemplate data={placeholderData} theme={theme} />
+                                     <ModernTemplate data={placeholderData} theme={theme} isPreview={true} />
                                    ) : (
-                                     <ClassicTemplate data={placeholderData} theme={theme} />
+                                     <ClassicTemplate data={placeholderData} theme={theme} isPreview={true} />
                                    )}
                                 </div>
                             </Link>
