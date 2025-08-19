@@ -319,7 +319,6 @@ export default function ResumeBuilderPage() {
                           <Button
                               key={template.name}
                               variant={selectedTemplate === template.name ? 'default' : 'outline'}
-                              className="w-full"
                               onClick={() => handleTemplateChange(template.name)}
                           >
                               {template.label}
@@ -329,7 +328,7 @@ export default function ResumeBuilderPage() {
               </div>
 
               <div id="print-container" className="p-4 border rounded-lg bg-secondary/30 min-h-[500px] max-h-[70vh] overflow-auto">
-                  <div className="bg-background shadow-lg mx-auto" style={{aspectRatio: '1 / 1.414', width: '100%'}}>
+                  <div className="bg-background shadow-lg mx-auto w-full h-full" style={{aspectRatio: '1 / 1.414'}}>
                       {SelectedTemplateComponent && <SelectedTemplateComponent data={data} />}
                   </div>
               </div>
