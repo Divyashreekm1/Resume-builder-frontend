@@ -1,3 +1,4 @@
+
 import type { TemplateProps } from './types';
 import { Mail, Phone, MapPin, Briefcase, GraduationCap, Lightbulb, Award, FolderKanban, Link as LinkIcon } from 'lucide-react';
 
@@ -28,9 +29,9 @@ export default function ModernTemplate({ data, theme, isPreview = false }: Templ
                 <div className="space-y-3">
                     <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Contact</h3>
                     <div className="space-y-1 text-xs">
-                         <p className="flex items-start"><MapPin className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span>{data.location}</span></p>
-                        <p className="flex items-start"><Mail className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span>{data.email}</span></p>
-                        <p className="flex items-start"><Phone className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span>{data.phone}</span></p>
+                         <p className="flex items-start"><MapPin className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{data.location}</span></p>
+                        <p className="flex items-start"><Mail className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{data.email}</span></p>
+                        <p className="flex items-start"><Phone className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{data.phone}</span></p>
                     </div>
                 </div>
 
