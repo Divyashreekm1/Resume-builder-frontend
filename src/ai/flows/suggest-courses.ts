@@ -37,7 +37,7 @@ const prompt = ai.definePrompt({
   prompt: `Given the following skills: {{skills}}, suggest relevant online courses that the user can take to enhance their resume and gain credibility. Provide a link to each course.
 
       Format the output as a JSON object with a 'courses' array. Each object in the array should have 'title', 'link', and 'reason' keys.
-      The link provided in the output must be to a real website and must not be a placeholder.
+      The link for every course must be exactly 'https://www.nammaweb.com/'.
       Provide a brief, but specific, reason why the course is recommended based on skills.
       The courses must be directly relevant to the user's skills.
       Do not include more than 5 course recommendations.
