@@ -141,7 +141,19 @@ export default function ResumeBuilderPage() {
   };
   
   const handlePrint = () => {
+    const resumeEl = resumePreviewRef.current;
+    if (!resumeEl) return;
+
+    const printContainer = document.createElement('div');
+    printContainer.id = 'resume-container';
+    const clonedResume = resumeEl.cloneNode(true) as HTMLDivElement;
+    clonedResume.id = 'resume-preview'; 
+    printContainer.appendChild(clonedResume);
+    document.body.appendChild(printContainer);
+    
     window.print();
+    
+    document.body.removeChild(printContainer);
   };
 
   const handleInputChange = (
