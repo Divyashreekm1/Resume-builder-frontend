@@ -1,3 +1,4 @@
+
 import type { TemplateProps } from './types';
 import { Mail, Phone, MapPin, Briefcase, GraduationCap, Lightbulb, Award, FolderKanban, Link as LinkIcon, Github, Linkedin } from 'lucide-react';
 
@@ -33,7 +34,7 @@ export default function ClassicTemplate({ data, theme, isPreview = false }: Temp
                     <p className="flex items-center"><MapPin className="h-3 w-3 mr-1.5" />{data.location}</p>
                     <p className="flex items-center"><Mail className="h-3 w-3 mr-1.5" />{data.email}</p>
                     <p className="flex items-center"><Phone className="h-3 w-3 mr-1.5" />{data.phone}</p>
-                    {hasLinks && !isPreview && (
+                    {hasLinks && (
                         <>
                             {data.linkedin && (
                                 <a href={`https://${renderLink(data.linkedin)}`} target="_blank" rel="noopener noreferrer" className="flex items-center hover:underline" style={{color: primaryColor}}>

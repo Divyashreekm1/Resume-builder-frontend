@@ -42,7 +42,7 @@ export default function ModernTemplate({ data, theme, isPreview = false }: Templ
                     </div>
                 </div>
 
-                {hasLinks && !isPreview && (
+                {hasLinks && (
                      <div className="mt-4 space-y-3">
                         <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Links</h3>
                         <div className="space-y-1 text-xs break-words">
