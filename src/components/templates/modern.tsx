@@ -13,6 +13,7 @@ const Section = ({ title, icon: Icon, children, primaryColor }: { title: string;
 );
 
 const renderLink = (url: string) => {
+    if (!url) return '';
     return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 };
 
@@ -58,25 +59,30 @@ export default function ModernTemplate({ data, theme, isPreview = false }: Templ
                         </div>
                     </div>
                 )}
-
-                <div className="mt-4 space-y-2">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Skills</h3>
-                    <div className="flex flex-wrap gap-1">
-                        {data.skills.map(skill => (
-                            <span key={skill} className="font-medium px-1.5 py-0.5 rounded-md text-[10px]" style={{ backgroundColor: `${primaryColor}33`, color: primaryColor }}>{skill}</span>
+                
+                {data.education.length > 0 && (
+                    <div className="mt-4 space-y-2">
+                        <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Education</h3>
+                        {data.education.map(edu => (
+                            <div key={edu.id} className="mb-1">
+                                <h4 className="font-bold text-xs">{edu.degree}</h4>
+                                <p className="text-[11px]">{edu.school}</p>
+                                <p className="text-[11px] opacity-70">{edu.date}</p>
+                            </div>
                         ))}
                     </div>
-                </div>
-                 <div className="mt-4 space-y-2">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Education</h3>
-                     {data.education.map(edu => (
-                        <div key={edu.id} className="mb-1">
-                            <h4 className="font-bold text-xs">{edu.degree}</h4>
-                            <p className="text-[11px]">{edu.school}</p>
-                            <p className="text-[11px] opacity-70">{edu.date}</p>
+                )}
+
+                {data.skills.length > 0 && (
+                    <div className="mt-4 space-y-2">
+                        <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Skills</h3>
+                        <div className="flex flex-wrap gap-1">
+                            {data.skills.map(skill => (
+                                <span key={skill} className="font-medium px-1.5 py-0.5 rounded-md text-[10px]" style={{ backgroundColor: `${primaryColor}33`, color: primaryColor }}>{skill}</span>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </div>
+                )}
             </div>
 
             {/* Main Content */}
