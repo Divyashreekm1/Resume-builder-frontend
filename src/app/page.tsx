@@ -57,6 +57,14 @@ import { salesData } from '@/lib/sales-data';
 import { engineerData } from '@/lib/engineer-data';
 import { medicalData } from '@/lib/medical-data';
 import { designerData } from '@/lib/designer-data';
+import { mechanicalEngineerData } from '@/lib/mechanical-engineer-data';
+import { electricalEngineerData } from '@/lib/electrical-engineer-data';
+import { artsData } from '@/lib/arts-data';
+import { accountantData } from '@/lib/accountant-data';
+import { managerData } from '@/lib/manager-data';
+import { executiveData } from '@/lib/executive-data';
+import { softwareDeveloperData } from '@/lib/software-developer-data';
+import { dataAnalystData } from '@/lib/data-analyst-data';
 
 import { getSuggestedCourses } from './actions';
 import ClassicTemplate from '@/components/templates/classic';
@@ -66,10 +74,21 @@ import SalesTemplate from '@/components/templates/sales';
 import EngineerTemplate from '@/components/templates/engineer';
 import MedicalTemplate from '@/components/templates/medical';
 import DesignerTemplate from '@/components/templates/designer';
+import MechanicalEngineerTemplate from '@/components/templates/mechanical-engineer';
+import ElectricalEngineerTemplate from '@/components/templates/electrical-engineer';
+import ArtsTemplate from '@/components/templates/arts';
+import AccountantTemplate from '@/components/templates/accountant';
+import ManagerTemplate from '@/components/templates/manager';
+import ExecutiveTemplate from '@/components/templates/executive';
+import SoftwareDeveloperTemplate from '@/components/templates/software-developer';
+import DataAnalystTemplate from '@/components/templates/data-analyst';
 import { LogoIcon } from '@/components/icons';
 import type { SuggestCoursesOutput } from '@/ai/flows/suggest-courses';
 
-type Template = 'modern' | 'classic' | 'commerce' | 'sales' | 'engineer' | 'medical' | 'designer';
+type Template = 
+  | 'modern' | 'classic' | 'commerce' | 'sales' | 'engineer' | 'medical' | 'designer'
+  | 'mechanical-engineer' | 'electrical-engineer' | 'arts' | 'accountant'
+  | 'manager' | 'executive' | 'software-developer' | 'data-analyst';
 
 const templates: { name: Template, label: string, component: React.FC<{data: ResumeData}> }[] = [
     { name: 'modern', label: 'Modern', component: ModernTemplate },
@@ -77,8 +96,16 @@ const templates: { name: Template, label: string, component: React.FC<{data: Res
     { name: 'commerce', label: 'Commerce', component: CommerceTemplate },
     { name: 'sales', label: 'Sales', component: SalesTemplate },
     { name: 'engineer', label: 'Engineer', component: EngineerTemplate },
+    { name: 'software-developer', label: 'Software Dev', component: SoftwareDeveloperTemplate },
+    { name: 'data-analyst', label: 'Data Analyst', component: DataAnalystTemplate },
+    { name: 'mechanical-engineer', label: 'Mechanical Eng.', component: MechanicalEngineerTemplate },
+    { name: 'electrical-engineer', label: 'Electrical Eng.', component: ElectricalEngineerTemplate },
     { name: 'medical', label: 'Medical', component: MedicalTemplate },
     { name: 'designer', label: 'Designer', component: DesignerTemplate },
+    { name: 'arts', label: 'Arts', component: ArtsTemplate },
+    { name: 'accountant', label: 'Accountant', component: AccountantTemplate },
+    { name: 'manager', label: 'Manager', component: ManagerTemplate },
+    { name: 'executive', label: 'Executive', component: ExecutiveTemplate },
 ];
 
 const templateDataMapping: Record<Template, ResumeData> = {
@@ -89,6 +116,14 @@ const templateDataMapping: Record<Template, ResumeData> = {
     engineer: engineerData,
     medical: medicalData,
     designer: designerData,
+    'mechanical-engineer': mechanicalEngineerData,
+    'electrical-engineer': electricalEngineerData,
+    arts: artsData,
+    accountant: accountantData,
+    manager: managerData,
+    executive: executiveData,
+    'software-developer': softwareDeveloperData,
+    'data-analyst': dataAnalystData,
 };
 
 export default function ResumeBuilderPage() {
@@ -404,5 +439,3 @@ export default function ResumeBuilderPage() {
     </>
   );
 }
-
-    
