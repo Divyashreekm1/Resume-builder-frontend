@@ -45,13 +45,34 @@ import {
 
 import type { ResumeData, Experience, Education, Certificate, Project } from '@/lib/types';
 import { placeholderData } from '@/lib/placeholder-data';
+import { commerceData } from '@/lib/commerce-data';
+import { salesData } from '@/lib/sales-data';
+import { engineerData } from '@/lib/engineer-data';
+import { medicalData } from '@/lib/medical-data';
+import { designerData } from '@/lib/designer-data';
+
 import { getSuggestedCourses } from './actions';
 import ClassicTemplate from '@/components/templates/classic';
 import ModernTemplate from '@/components/templates/modern';
+import CommerceTemplate from '@/components/templates/commerce';
+import SalesTemplate from '@/components/templates/sales';
+import EngineerTemplate from '@/components/templates/engineer';
+import MedicalTemplate from '@/components/templates/medical';
+import DesignerTemplate from '@/components/templates/designer';
 import { LogoIcon } from '@/components/icons';
 import type { SuggestCoursesOutput } from '@/ai/flows/suggest-courses';
 
-type Template = 'classic' | 'modern';
+type Template = 'modern' | 'classic' | 'commerce' | 'sales' | 'engineer' | 'medical' | 'designer';
+
+const templateDataMapping: Record<Template, ResumeData> = {
+    modern: placeholderData,
+    classic: placeholderData,
+    commerce: commerceData,
+    sales: salesData,
+    engineer: engineerData,
+    medical: medicalData,
+    designer: designerData,
+};
 
 export default function ResumeBuilderPage() {
   const [data, setData] = useState<ResumeData>(placeholderData);
@@ -61,6 +82,12 @@ export default function ResumeBuilderPage() {
   const { toast } = useToast();
   const resumePreviewRef = useRef<HTMLDivElement>(null);
   const formId = useId();
+
+  const handleTemplateChange = (value: string) => {
+    const newTemplate = value as Template;
+    setSelectedTemplate(newTemplate);
+    setData(templateDataMapping[newTemplate]);
+  };
 
   const handlePrint = () => {
     window.print();
@@ -287,10 +314,15 @@ export default function ResumeBuilderPage() {
               <CardDescription>Select a template and download your resume.</CardDescription>
             </CardHeader>
             <CardContent>
-              <Tabs value={selectedTemplate} onValueChange={(value) => setSelectedTemplate(value as Template)} className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
+              <Tabs value={selectedTemplate} onValueChange={handleTemplateChange} className="w-full">
+                <TabsList className="grid w-full grid-cols-4">
                   <TabsTrigger value="modern">Modern</TabsTrigger>
                   <TabsTrigger value="classic">Classic</TabsTrigger>
+                  <TabsTrigger value="commerce">Commerce</TabsTrigger>
+                  <TabsTrigger value="sales">Sales</TabsTrigger>
+                  <TabsTrigger value="engineer">Engineer</TabsTrigger>
+                  <TabsTrigger value="medical">Medical</TabsTrigger>
+                  <TabsTrigger value="designer">Designer</TabsTrigger>
                 </TabsList>
                 <div className="mt-4 p-4 border rounded-lg bg-secondary/30 min-h-[500px] max-h-[70vh] overflow-auto">
                     <div id="resume-preview" ref={resumePreviewRef} className="bg-background shadow-lg mx-auto" style={{aspectRatio: '1 / 1.414', width: '100%'}}>
@@ -299,6 +331,21 @@ export default function ResumeBuilderPage() {
                         </TabsContent>
                         <TabsContent value="classic" className="mt-0">
                             {selectedTemplate === 'classic' && <ClassicTemplate data={data} />}
+                        </TabsContent>
+                         <TabsContent value="commerce" className="mt-0">
+                            {selectedTemplate === 'commerce' && <CommerceTemplate data={data} />}
+                        </TabsContent>
+                        <TabsContent value="sales" className="mt-0">
+                            {selectedTemplate === 'sales' && <SalesTemplate data={data} />}
+                        </TabsContent>
+                        <TabsContent value="engineer" className="mt-0">
+                            {selectedTemplate === 'engineer' && <EngineerTemplate data={data} />}
+                        </TabsContent>
+                        <TabsContent value="medical" className="mt-0">
+                            {selectedTemplate === 'medical' && <MedicalTemplate data={data} />}
+                        </TabsContent>
+                        <TabsContent value="designer" className="mt-0">
+                            {selectedTemplate === 'designer' && <DesignerTemplate data={data} />}
                         </TabsContent>
                     </div>
                 </div>
