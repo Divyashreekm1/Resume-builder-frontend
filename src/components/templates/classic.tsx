@@ -14,7 +14,7 @@ const Section = ({ title, icon: Icon, children }: { title: string; icon: React.E
 export default function ClassicTemplate({ data }: TemplateProps) {
     return (
         <div className="bg-white text-gray-800 p-6 font-serif w-full h-full text-sm flex flex-col overflow-hidden">
-            <header className="text-center mb-6">
+            <header className="text-center mb-6 shrink-0">
                 <h1 className="text-3xl font-bold tracking-wider">{data.name}</h1>
                 <div className="flex justify-center items-center gap-x-3 gap-y-1 mt-2 text-xs flex-wrap">
                     <span className="flex items-center"><MapPin className="h-3 w-3 mr-1" />{data.location}</span>
@@ -24,7 +24,7 @@ export default function ClassicTemplate({ data }: TemplateProps) {
             </header>
 
             {data.description && (
-                <p className="text-center mb-6 text-xs italic">{data.description}</p>
+                <p className="text-center mb-6 text-xs italic shrink-0">{data.description}</p>
             )}
             
             <div className="flex-grow overflow-y-auto pr-2">
