@@ -47,12 +47,12 @@ export default function ModernTemplate({ data, theme, isPreview = false }: Templ
                         <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Links</h3>
                         <div className="space-y-1 text-xs break-words">
                              {data.linkedin && (
-                                <a href={`https://${renderLink(data.linkedin)}`} target="_blank" rel="noopener noreferrer" className="flex items-start hover:underline" style={{color: primaryColor}}>
+                                <a href={`https://${renderLink(data.linkedin)}`} target="_blank" rel="noopener noreferrer" className="flex items-start hover:underline" style={{color: primaryColor}} onClick={e => isPreview && e.preventDefault()}>
                                     <Linkedin className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{renderLink(data.linkedin)}</span>
                                 </a>
                             )}
                             {data.github && (
-                                <a href={`https://${renderLink(data.github)}`} target="_blank" rel="noopener noreferrer" className="flex items-start hover:underline" style={{color: primaryColor}}>
+                                <a href={`https://${renderLink(data.github)}`} target="_blank" rel="noopener noreferrer" className="flex items-start hover:underline" style={{color: primaryColor}} onClick={e => isPreview && e.preventDefault()}>
                                     <Github className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{renderLink(data.github)}</span>
                                 </a>
                             )}
@@ -113,8 +113,8 @@ export default function ModernTemplate({ data, theme, isPreview = false }: Templ
                         {data.projects.map(proj => (
                             <div key={proj.id} className="mb-2">
                                 <h3 className="font-bold text-sm flex items-center">{proj.name} 
-                                {proj.link && !isPreview && 
-                                    <a href={`https://${renderLink(proj.link)}`} target="_blank" rel="noopener noreferrer" className="font-normal hover:underline ml-1" style={{color: primaryColor}}>
+                                {proj.link && 
+                                    <a href={`https://${renderLink(proj.link)}`} target="_blank" rel="noopener noreferrer" className="font-normal hover:underline ml-1" style={{color: primaryColor}} onClick={e => isPreview && e.preventDefault()}>
                                         <LinkIcon className="inline h-3 w-3" />
                                     </a>
                                 }
