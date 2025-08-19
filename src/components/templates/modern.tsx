@@ -28,14 +28,14 @@ export default function ModernTemplate({ data, theme, isPreview = false }: Templ
     return (
         <div className="flex w-full h-full bg-white text-xs overflow-hidden" style={{ backgroundColor }}>
             {/* Sidebar */}
-            <div className="w-1/3 p-4 flex flex-col" style={{ backgroundColor: sidebarBackgroundColor, color: textColor }}>
+            <div className="w-1/3 p-4 flex flex-col overflow-y-auto" style={{ backgroundColor: sidebarBackgroundColor, color: textColor }}>
                 <div className="text-center mb-6">
                     <h1 className="text-2xl font-bold" style={{ color: primaryColor }}>{data.name}</h1>
                 </div>
 
                 <div className="space-y-3">
                     <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Contact</h3>
-                    <div className="space-y-1 text-xs break-all">
+                    <div className="space-y-1 text-xs break-words">
                          <p className="flex items-start"><MapPin className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span>{data.location}</span></p>
                         <p className="flex items-start"><Mail className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span>{data.email}</span></p>
                         <p className="flex items-start"><Phone className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span>{data.phone}</span></p>
@@ -45,7 +45,7 @@ export default function ModernTemplate({ data, theme, isPreview = false }: Templ
                 {hasLinks && !isPreview && (
                      <div className="mt-4 space-y-3">
                         <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Links</h3>
-                        <div className="space-y-1 text-xs break-all">
+                        <div className="space-y-1 text-xs break-words">
                              {data.linkedin && (
                                 <a href={`https://${renderLink(data.linkedin)}`} target="_blank" rel="noopener noreferrer" className="flex items-start hover:underline" style={{color: primaryColor}}>
                                     <Linkedin className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{renderLink(data.linkedin)}</span>
