@@ -1,7 +1,8 @@
 
 'use client';
 
-import React, { useState, useRef, useId, Fragment } from 'react';
+import React, { useState, useRef, useId, Fragment, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import {
   Accordion,
   AccordionContent,
@@ -45,8 +46,9 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-import type { ResumeData, Experience, Education, Certificate, Project } from '@/lib/types';
+import type { ResumeData, Experience, Education, Certificate, Project, Theme } from '@/lib/types';
 import { placeholderData } from '@/lib/placeholder-data';
+import { themes as allThemes } from '@/lib/themes';
 
 import { getSuggestedCourses } from './actions';
 import ClassicTemplate from '@/components/templates/classic';
@@ -56,7 +58,7 @@ import type { SuggestCoursesOutput } from '@/ai/flows/suggest-courses';
 
 type Template = 'modern' | 'classic';
 
-const templates: { name: Template, label: string, component: React.FC<{data: ResumeData}> }[] = [
+const templates: { name: Template, label: string, component: React.FC<{data: ResumeData, theme?: Theme}> }[] = [
     { name: 'modern', label: 'Modern', component: ModernTemplate },
     { name: 'classic', label: 'Classic', component: ClassicTemplate },
 ];
@@ -66,17 +68,37 @@ const templateDataMapping: Record<Template, ResumeData> = {
     classic: placeholderData,
 };
 
-export default function ResumeBuilderPage() {
+function ResumeBuilder() {
+  const searchParams = useSearchParams();
   const [data, setData] = useState<ResumeData>(placeholderData);
   const [selectedTemplate, setSelectedTemplate] = useState<Template>('modern');
+  const [selectedTheme, setSelectedTheme] = useState<Theme | undefined>(undefined);
   const [suggestedCourses, setSuggestedCourses] = useState<SuggestCoursesOutput | null>(null);
   const [isSuggesting, setIsSuggesting] = useState(false);
   const { toast } = useToast();
   const formId = useId();
 
+  useEffect(() => {
+    const templateParam = searchParams.get('template') as Template;
+    const themeParam = searchParams.get('theme');
+
+    if (templateParam && templates.find(t => t.name === templateParam)) {
+      setSelectedTemplate(templateParam);
+      setData(templateDataMapping[templateParam]);
+    }
+
+    if (themeParam) {
+      const foundTheme = allThemes.find(t => t.name === themeParam);
+      if (foundTheme) {
+        setSelectedTheme(foundTheme);
+      }
+    }
+  }, [searchParams]);
+
   const handleTemplateChange = (newTemplate: Template) => {
     setSelectedTemplate(newTemplate);
     setData(templateDataMapping[newTemplate]);
+    setSelectedTheme(undefined); // Reset theme when template changes
   };
   
   const handlePrint = () => {
@@ -325,7 +347,7 @@ export default function ResumeBuilderPage() {
 
               <div id="print-container" className="p-4 border rounded-lg bg-secondary/30 overflow-auto h-[70vh]">
                   <div className="bg-background shadow-lg mx-auto w-full h-full">
-                      {SelectedTemplateComponent && <SelectedTemplateComponent data={data} />}
+                      {SelectedTemplateComponent && <SelectedTemplateComponent data={data} theme={selectedTheme} />}
                   </div>
               </div>
               
@@ -371,5 +393,13 @@ export default function ResumeBuilderPage() {
         </DialogContent>
       </Dialog>
     </>
+  );
+}
+
+export default function ResumeBuilderPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResumeBuilder />
+    </Suspense>
   );
 }

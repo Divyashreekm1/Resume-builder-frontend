@@ -1,3 +1,4 @@
+
 export interface ResumeData {
   name: string;
   location: string;
@@ -34,8 +35,16 @@ export interface Project {
 }
 
 export interface Certificate {
-  id: string;
+  id:string;
   name: string;
   issuingBody: string;
   date: string;
+}
+
+export interface Theme {
+  name: string;
+  primary: string;
+  bg: string;
+  text: string;
+  sidebarBg: string;
 }
