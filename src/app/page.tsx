@@ -132,7 +132,6 @@ export default function ResumeBuilderPage() {
   const [suggestedCourses, setSuggestedCourses] = useState<SuggestCoursesOutput | null>(null);
   const [isSuggesting, setIsSuggesting] = useState(false);
   const { toast } = useToast();
-  const resumePreviewRef = useRef<HTMLDivElement>(null);
   const formId = useId();
 
   const handleTemplateChange = (newTemplate: Template) => {
@@ -141,19 +140,9 @@ export default function ResumeBuilderPage() {
   };
   
   const handlePrint = () => {
-    const resumeEl = resumePreviewRef.current;
-    if (!resumeEl) return;
-
-    const printContainer = document.createElement('div');
-    printContainer.id = 'resume-container';
-    const clonedResume = resumeEl.cloneNode(true) as HTMLDivElement;
-    clonedResume.id = 'resume-preview'; 
-    printContainer.appendChild(clonedResume);
-    document.body.appendChild(printContainer);
-    
+    document.body.classList.add('printing');
     window.print();
-    
-    document.body.removeChild(printContainer);
+    document.body.classList.remove('printing');
   };
 
   const handleInputChange = (
@@ -240,7 +229,7 @@ export default function ResumeBuilderPage() {
               <Accordion type="multiple" defaultValue={['personal', 'experience']} className="w-full">
                 {/* Personal Details */}
                 <AccordionItem value="personal">
-                  <AccordionTrigger className="text-lg font-semibold"><SectionIcon icon={User} />Personal Details</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold"><div className="flex items-center"><SectionIcon icon={User} />Personal Details</div></AccordionTrigger>
                   <AccordionContent className="grid gap-4 p-1">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -271,7 +260,7 @@ export default function ResumeBuilderPage() {
                 
                 {/* Experience */}
                 <AccordionItem value="experience">
-                  <AccordionTrigger className="text-lg font-semibold"><SectionIcon icon={Briefcase} />Experience</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold"><div className="flex items-center"><SectionIcon icon={Briefcase} />Experience</div></AccordionTrigger>
                   <AccordionContent className="space-y-4 p-1">
                     {data.experience.map((exp, index) => (
                       <Card key={exp.id}>
@@ -292,7 +281,7 @@ export default function ResumeBuilderPage() {
                 
                 {/* Education */}
                 <AccordionItem value="education">
-                  <AccordionTrigger className="text-lg font-semibold"><SectionIcon icon={GraduationCap} />Education</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold"><div className="flex items-center"><SectionIcon icon={GraduationCap} />Education</div></AccordionTrigger>
                   <AccordionContent className="space-y-4 p-1">
                     {data.education.map((edu, index) => (
                       <Card key={edu.id}>
@@ -310,7 +299,7 @@ export default function ResumeBuilderPage() {
 
                 {/* Skills */}
                 <AccordionItem value="skills">
-                  <AccordionTrigger className="text-lg font-semibold"><SectionIcon icon={Lightbulb} />Skills</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold"><div className="flex items-center"><SectionIcon icon={Lightbulb} />Skills</div></AccordionTrigger>
                   <AccordionContent className="p-1">
                     <Label htmlFor={`${formId}-skills`}>Skills (one per line)</Label>
                     <Textarea id={`${formId}-skills`} value={data.skills.join('\n')} onChange={handleSkillsChange} placeholder="e.g. JavaScript\nReact\nNode.js" rows={5}/>
@@ -324,7 +313,7 @@ export default function ResumeBuilderPage() {
 
                 {/* Certificates */}
                 <AccordionItem value="certificates">
-                  <AccordionTrigger className="text-lg font-semibold"><SectionIcon icon={Award} />Certificates</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold"><div className="flex items-center"><SectionIcon icon={Award} />Certificates</div></AccordionTrigger>
                   <AccordionContent className="space-y-4 p-1">
                      <div className="p-4 bg-accent/20 border border-accent/50 rounded-lg flex items-center justify-between">
                         <div>
@@ -352,7 +341,7 @@ export default function ResumeBuilderPage() {
 
                 {/* Projects */}
                 <AccordionItem value="projects">
-                  <AccordionTrigger className="text-lg font-semibold"><SectionIcon icon={FolderKanban} />Projects</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold"><div className="flex items-center"><SectionIcon icon={FolderKanban} />Projects</div></AccordionTrigger>
                   <AccordionContent className="space-y-4 p-1">
                     {data.projects.map((proj, index) => (
                       <Card key={proj.id}>
@@ -406,8 +395,8 @@ export default function ResumeBuilderPage() {
                   </Carousel>
               </div>
 
-              <div className="p-4 border rounded-lg bg-secondary/30 min-h-[500px] max-h-[70vh] overflow-auto">
-                  <div id="resume-preview" ref={resumePreviewRef} className="bg-background shadow-lg mx-auto" style={{aspectRatio: '1 / 1.414', width: '100%'}}>
+              <div id="print-container" className="p-4 border rounded-lg bg-secondary/30 min-h-[500px] max-h-[70vh] overflow-auto">
+                  <div className="bg-background shadow-lg mx-auto" style={{aspectRatio: '1 / 1.414', width: '100%'}}>
                       {SelectedTemplateComponent && <SelectedTemplateComponent data={data} />}
                   </div>
               </div>
