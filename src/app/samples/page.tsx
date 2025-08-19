@@ -11,6 +11,29 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, Pencil } from 'lucide-react';
 import { themes } from '@/lib/themes';
 
+const sampleTitles = [
+    "Software Engineer",
+    "Data Analyst",
+    "Accountant",
+    "Manager",
+    "Executive",
+    "Finance Professional",
+    "Civil Engineer",
+    "Teacher",
+    "UX/UI Designer",
+    "Graphic Designer",
+    "Electrical Engineer",
+    "Mechanical Engineer",
+    "Web Developer",
+    "DevOps Engineer",
+    "Cloud Engineer",
+    "Technology Consultant",
+    "Sales & Marketing",
+    "Healthcare Professional",
+    "IT Support Specialist",
+    "Product Manager",
+];
+
 export default function SamplesPage() {
     return (
         <>
@@ -36,9 +59,13 @@ export default function SamplesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {themes.map((theme, index) => {
                     const templateType = index % 2 === 0 ? 'modern' : 'classic';
+                    const title = sampleTitles[index] || "Professional";
                     return (
                         <div key={index} className="flex flex-col items-center gap-4 group">
-                             <h2 className="text-lg font-semibold">{theme.name}</h2>
+                             <div className="text-center">
+                                <h2 className="text-lg font-semibold">{theme.name}</h2>
+                                <p className="text-sm text-muted-foreground">{title}</p>
+                            </div>
                             <Link href={`/?template=${templateType}&theme=${encodeURIComponent(theme.name)}`} className="w-full">
                                 <div className="relative w-full h-auto aspect-[1/1.414] bg-white shadow-2xl rounded-lg overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
                                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
