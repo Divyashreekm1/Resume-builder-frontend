@@ -218,8 +218,8 @@ export default function ResumeBuilderPage() {
           </div>
         </div>
       </header>
-      <main className="container grid md:grid-cols-[1fr_450px] lg:grid-cols-[1fr_600px] gap-8 py-8 items-start">
-        <div className="flex flex-col gap-8">
+      <main className="container grid md:grid-cols-[450px_1fr] lg:grid-cols-[600px_1fr] gap-8 py-8 items-start">
+        <div className="flex flex-col gap-8 order-2 md:order-1">
           <Card>
             <CardHeader>
               <CardTitle>Resume Content</CardTitle>
@@ -361,7 +361,7 @@ export default function ResumeBuilderPage() {
           </Card>
         </div>
 
-        <div className="sticky top-24">
+        <div className="sticky top-24 order-1 md:order-2">
           <Card>
             <CardHeader>
               <CardTitle>Preview & Download</CardTitle>
