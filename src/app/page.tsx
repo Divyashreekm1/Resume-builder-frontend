@@ -43,6 +43,8 @@ import {
   FolderKanban,
   Book,
   Eye,
+  Github,
+  Linkedin,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -225,6 +227,16 @@ function ResumeBuilder() {
                       <div>
                         <Label htmlFor={`${formId}-phone`}>Phone</Label>
                         <Input id={`${formId}-phone`} name="phone" type="tel" value={data.phone} onChange={handleInputChange} placeholder="e.g. (123) 456-7890" />
+                      </div>
+                    </div>
+                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor={`${formId}-github`}>GitHub</Label>
+                        <Input id={`${formId}-github`} name="github" value={data.github || ''} onChange={handleInputChange} placeholder="e.g. github.com/username" />
+                      </div>
+                      <div>
+                        <Label htmlFor={`${formId}-linkedin`}>LinkedIn</Label>
+                        <Input id={`${formId}-linkedin`} name="linkedin" value={data.linkedin || ''} onChange={handleInputChange} placeholder="e.g. linkedin.com/in/username" />
                       </div>
                     </div>
                     <div>

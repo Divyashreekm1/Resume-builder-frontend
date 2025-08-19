@@ -1,6 +1,6 @@
 
 import type { TemplateProps } from './types';
-import { Mail, Phone, MapPin, Briefcase, GraduationCap, Lightbulb, Award, FolderKanban, Link as LinkIcon } from 'lucide-react';
+import { Mail, Phone, MapPin, Briefcase, GraduationCap, Lightbulb, Award, FolderKanban, Link as LinkIcon, Github, Linkedin } from 'lucide-react';
 
 const Section = ({ title, icon: Icon, children, primaryColor }: { title: string; icon: React.ElementType, children: React.ReactNode, primaryColor?: string }) => (
     <div className="mb-4">
@@ -12,11 +12,17 @@ const Section = ({ title, icon: Icon, children, primaryColor }: { title: string;
     </div>
 );
 
+const renderLink = (url: string) => {
+    return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+};
+
 export default function ModernTemplate({ data, theme, isPreview = false }: TemplateProps) {
     const primaryColor = theme?.primary || 'hsl(var(--primary))';
     const backgroundColor = theme?.bg || '#ffffff';
     const textColor = theme?.text || '#333333';
     const sidebarBackgroundColor = theme?.sidebarBg || '#f4f4f4';
+
+    const hasLinks = data.linkedin || data.github;
 
     return (
         <div className="flex w-full h-full bg-white text-xs overflow-hidden" style={{ backgroundColor }}>
@@ -28,12 +34,30 @@ export default function ModernTemplate({ data, theme, isPreview = false }: Templ
 
                 <div className="space-y-3">
                     <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Contact</h3>
-                    <div className="space-y-1 text-xs">
-                         <p className="flex items-start"><MapPin className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{data.location}</span></p>
-                        <p className="flex items-start"><Mail className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{data.email}</span></p>
-                        <p className="flex items-start"><Phone className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{data.phone}</span></p>
+                    <div className="space-y-1 text-xs break-all">
+                         <p className="flex items-start"><MapPin className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span>{data.location}</span></p>
+                        <p className="flex items-start"><Mail className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span>{data.email}</span></p>
+                        <p className="flex items-start"><Phone className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span>{data.phone}</span></p>
                     </div>
                 </div>
+
+                {hasLinks && !isPreview && (
+                     <div className="mt-4 space-y-3">
+                        <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Links</h3>
+                        <div className="space-y-1 text-xs">
+                             {data.linkedin && (
+                                <a href={`https://${renderLink(data.linkedin)}`} target="_blank" rel="noopener noreferrer" className="flex items-start hover:underline" style={{color: primaryColor}}>
+                                    <Linkedin className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{renderLink(data.linkedin)}</span>
+                                </a>
+                            )}
+                            {data.github && (
+                                <a href={`https://${renderLink(data.github)}`} target="_blank" rel="noopener noreferrer" className="flex items-start hover:underline" style={{color: primaryColor}}>
+                                    <Github className="h-3 w-3 mr-2 mt-0.5 shrink-0" /><span className="break-all">{renderLink(data.github)}</span>
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                )}
 
                 <div className="mt-4 space-y-2">
                     <h3 className="text-xs font-semibold uppercase tracking-wider border-b pb-1 mb-1" style={{ borderColor: `${textColor}40` }}>Skills</h3>
@@ -82,7 +106,13 @@ export default function ModernTemplate({ data, theme, isPreview = false }: Templ
                     <Section title="Projects" icon={FolderKanban} primaryColor={primaryColor}>
                         {data.projects.map(proj => (
                             <div key={proj.id} className="mb-2">
-                                <h3 className="font-bold text-sm flex items-center">{proj.name} {proj.link && !isPreview && <a href={`https://${proj.link}`} className="font-normal hover:underline ml-1" style={{color: primaryColor}}><LinkIcon className="inline h-3 w-3" /></a>}</h3>
+                                <h3 className="font-bold text-sm flex items-center">{proj.name} 
+                                {proj.link && !isPreview && 
+                                    <a href={`https://${renderLink(proj.link)}`} target="_blank" rel="noopener noreferrer" className="font-normal hover:underline ml-1" style={{color: primaryColor}}>
+                                        <LinkIcon className="inline h-3 w-3" />
+                                    </a>
+                                }
+                                </h3>
                                 <p className="text-[11px]">{proj.description}</p>
                             </div>
                         ))}

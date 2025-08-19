@@ -1,5 +1,5 @@
 import type { TemplateProps } from './types';
-import { Mail, Phone, MapPin, Briefcase, GraduationCap, Lightbulb, Award, FolderKanban, Link as LinkIcon } from 'lucide-react';
+import { Mail, Phone, MapPin, Briefcase, GraduationCap, Lightbulb, Award, FolderKanban, Link as LinkIcon, Github, Linkedin } from 'lucide-react';
 
 const Section = ({ title, icon: Icon, children, primaryColor }: { title: string; icon: React.ElementType, children: React.ReactNode, primaryColor?: string }) => (
     <div className="mb-4">
@@ -13,20 +13,40 @@ const Section = ({ title, icon: Icon, children, primaryColor }: { title: string;
     </div>
 );
 
+const renderLink = (url: string) => {
+    return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+};
+
 export default function ClassicTemplate({ data, theme, isPreview = false }: TemplateProps) {
     const primaryColor = theme?.primary || 'hsl(var(--primary))';
     const backgroundColor = theme?.bg || '#ffffff';
     const textColor = theme?.text || '#333333';
+
+    const hasLinks = data.github || data.linkedin;
 
     return (
         <div className="w-full h-full text-xs p-6 overflow-y-auto flex flex-col" style={{ backgroundColor: backgroundColor, color: textColor }}>
             {/* Header */}
             <header className="text-center mb-6">
                 <h1 className="text-3xl font-bold" style={{ color: primaryColor }}>{data.name}</h1>
-                <div className="flex justify-center items-center space-x-4 text-[11px] mt-1" style={{color: textColor}}>
+                <div className="flex justify-center items-center flex-wrap gap-x-4 gap-y-1 text-[11px] mt-1" style={{color: textColor}}>
                     <p className="flex items-center"><MapPin className="h-3 w-3 mr-1.5" />{data.location}</p>
                     <p className="flex items-center"><Mail className="h-3 w-3 mr-1.5" />{data.email}</p>
                     <p className="flex items-center"><Phone className="h-3 w-3 mr-1.5" />{data.phone}</p>
+                    {hasLinks && !isPreview && (
+                        <>
+                            {data.linkedin && (
+                                <a href={`https://${renderLink(data.linkedin)}`} target="_blank" rel="noopener noreferrer" className="flex items-center hover:underline" style={{color: primaryColor}}>
+                                    <Linkedin className="h-3 w-3 mr-1.5" />{renderLink(data.linkedin)}
+                                </a>
+                            )}
+                            {data.github && (
+                                <a href={`https://${renderLink(data.github)}`} target="_blank" rel="noopener noreferrer" className="flex items-center hover:underline" style={{color: primaryColor}}>
+                                    <Github className="h-3 w-3 mr-1.5" />{renderLink(data.github)}
+                                </a>
+                            )}
+                        </>
+                    )}
                 </div>
             </header>
 
@@ -91,7 +111,7 @@ export default function ClassicTemplate({ data, theme, isPreview = false }: Temp
                             <h3 className="font-bold text-sm flex items-center">
                                 {proj.name} 
                                 {proj.link && !isPreview &&
-                                    <a href={`https://${proj.link.replace(/^https?:\/\//, '')}`} target="_blank" rel="noopener noreferrer" className="font-normal hover:underline ml-2" style={{color: primaryColor}}>
+                                    <a href={`https://${renderLink(proj.link)}`} target="_blank" rel="noopener noreferrer" className="font-normal hover:underline ml-2" style={{color: primaryColor}}>
                                         <LinkIcon className="inline h-3 w-3" />
                                     </a>
                                 }
