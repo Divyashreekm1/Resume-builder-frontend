@@ -38,9 +38,9 @@ const sampleTitles: (keyof typeof sampleData)[] = [
 ];
 
 const templates = [
+    { name: 'creative', component: CreativeTemplate },
     { name: 'modern', component: ModernTemplate },
     { name: 'classic', component: ClassicTemplate },
-    { name: 'creative', component: CreativeTemplate },
 ];
 
 export default function SamplesPage() {
@@ -67,7 +67,7 @@ export default function SamplesPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {themes.map((theme, index) => {
-                    const templateIndex = index % templates.length;
+                    const templateIndex = 0; // Always use the first template (Creative)
                     const TemplateComponent = templates[templateIndex].component;
                     const templateType = templates[templateIndex].name;
                     const title = sampleTitles[index % sampleTitles.length];
