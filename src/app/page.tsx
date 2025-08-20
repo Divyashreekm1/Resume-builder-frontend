@@ -68,6 +68,8 @@ import ModernTemplate from '@/components/templates/modern';
 import CreativeTemplate from '@/components/templates/creative';
 import { LogoIcon } from '@/components/icons';
 import type { SuggestCoursesOutput } from '@/ai/flows/suggest-courses';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 type Template = 'modern' | 'classic' | 'creative';
 
@@ -131,6 +133,61 @@ function ResumeBuilder() {
     document.body.classList.add('printing');
     window.print();
     document.body.classList.remove('printing');
+  };
+
+  const handleDownloadPdf = () => {
+    const resumeElement = document.getElementById('resume-preview');
+    if (!resumeElement) {
+        toast({
+            variant: 'destructive',
+            title: 'Error',
+            description: 'Could not find the resume preview to download.',
+        });
+        return;
+    }
+
+    html2canvas(resumeElement, {
+        scale: 2, // Increase scale for better quality
+        useCORS: true,
+        logging: false,
+    }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        // A4 page dimensions in mm: 210 x 297
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4',
+        });
+        
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const canvasAspectRatio = canvasWidth / canvasHeight;
+        const pdfAspectRatio = pdfWidth / pdfHeight;
+        
+        let finalWidth, finalHeight;
+
+        if (canvasAspectRatio > pdfAspectRatio) {
+            finalWidth = pdfWidth;
+            finalHeight = pdfWidth / canvasAspectRatio;
+        } else {
+            finalHeight = pdfHeight;
+            finalWidth = pdfHeight * canvasAspectRatio;
+        }
+
+        const x = (pdfWidth - finalWidth) / 2;
+        const y = 0; // Align to top
+
+        pdf.addImage(imgData, 'PNG', x, y, finalWidth, finalHeight);
+        pdf.save(`${data.name.replace(/\s/g, '_')}_Resume.pdf`);
+    }).catch(err => {
+        toast({
+            variant: 'destructive',
+            title: 'Error generating PDF',
+            description: 'Something went wrong while creating the PDF. Please try again.',
+        });
+    });
   };
 
   const handleInputChange = (
@@ -406,7 +463,7 @@ function ResumeBuilder() {
               </div>
 
               <div id="print-container" className="p-4 border rounded-lg bg-secondary/30 overflow-auto h-[70vh]">
-                  <div className="bg-background shadow-lg mx-auto w-full h-full">
+                  <div id="resume-preview" className="bg-background shadow-lg mx-auto w-full h-full">
                       {SelectedTemplateComponent && <SelectedTemplateComponent data={data} theme={selectedTheme} />}
                   </div>
               </div>
@@ -419,7 +476,7 @@ function ResumeBuilder() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-full">
-                    <DropdownMenuItem onClick={handlePrint}>
+                    <DropdownMenuItem onClick={handleDownloadPdf}>
                       <Download className="mr-2 h-4 w-4" />
                       <span>Save as PDF</span>
                     </DropdownMenuItem>
