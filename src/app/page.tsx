@@ -47,6 +47,7 @@ import {
   Linkedin,
   Image as ImageIcon,
   Upload,
+  Printer,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -404,9 +405,15 @@ function ResumeBuilder() {
                   </div>
               </div>
               
-              <Button onClick={handlePrint} className="w-full mt-4 text-lg py-6">
-                <Download className="mr-2 h-5 w-5" /> Download as PDF
-              </Button>
+              <div className="grid grid-cols-2 gap-4 mt-4">
+                <Button onClick={handlePrint} className="w-full text-lg py-6">
+                  <Download className="mr-2 h-5 w-5" /> Download PDF
+                </Button>
+                <Button onClick={handlePrint} variant="outline" className="w-full text-lg py-6">
+                  <Printer className="mr-2 h-5 w-5" /> Print
+                </Button>
+              </div>
+
               <Link href="/samples" passHref>
                 <Button variant="link" className="w-full mt-2 text-primary">
                     <Eye className="mr-2 h-5 w-5" /> View Sample Templates
