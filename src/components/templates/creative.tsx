@@ -25,6 +25,9 @@ export default function CreativeTemplate({ data, theme, isPreview = false }: Tem
     const primaryColor = theme?.primary || 'hsl(var(--primary))';
     const backgroundColor = theme?.bg || '#ffffff';
     const textColor = theme?.text || '#333333';
+    
+    const femaleNames = ["Maria", "Jessica", "Olivia", "Fatima", "Aisha", "Sarah", "Laura", "Rachel", "Emily", "Jamie"];
+    const aiHint = femaleNames.some(name => data.name.includes(name)) ? "woman face" : "man face";
 
     return (
         <div className="w-full h-full text-xs p-6 overflow-y-auto flex flex-col" style={{ backgroundColor: backgroundColor, color: textColor }}>
@@ -39,7 +42,7 @@ export default function CreativeTemplate({ data, theme, isPreview = false }: Tem
                             height={100} 
                             className="rounded-full object-cover border-4"
                             style={{ borderColor: primaryColor }}
-                            data-ai-hint={data.name.includes("a") ? "woman face" : "man face"}
+                            data-ai-hint={aiHint}
                         />
                     </div>
                 )}
