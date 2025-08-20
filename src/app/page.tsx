@@ -27,6 +27,12 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -405,13 +411,24 @@ function ResumeBuilder() {
                   </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4 mt-4">
-                <Button onClick={handlePrint} className="w-full text-lg py-6">
-                  <Download className="mr-2 h-5 w-5" /> Download PDF
-                </Button>
-                <Button onClick={handlePrint} variant="outline" className="w-full text-lg py-6">
-                  <Printer className="mr-2 h-5 w-5" /> Print
-                </Button>
+              <div className="mt-4">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button className="w-full text-lg py-6">
+                      <Download className="mr-2 h-5 w-5" /> Download
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-full">
+                    <DropdownMenuItem onClick={handlePrint}>
+                      <Download className="mr-2 h-4 w-4" />
+                      <span>Save as PDF</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={handlePrint}>
+                      <Printer className="mr-2 h-4 w-4" />
+                      <span>Print</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
 
               <Link href="/samples" passHref>
@@ -463,5 +480,3 @@ export default function ResumeBuilderPage() {
     </Suspense>
   );
 }
-
-    
