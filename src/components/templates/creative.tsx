@@ -39,7 +39,7 @@ export default function CreativeTemplate({ data, theme, isPreview = false }: Tem
                             height={100} 
                             className="rounded-full object-cover border-4"
                             style={{ borderColor: primaryColor }}
-                            data-ai-hint="profile photo"
+                            data-ai-hint={data.name.includes("a") ? "woman face" : "man face"}
                         />
                     </div>
                 )}
