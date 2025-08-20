@@ -46,6 +46,7 @@ import {
   Github,
   Linkedin,
   Image as ImageIcon,
+  Upload,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -78,12 +79,13 @@ const templateDataMapping: Record<Template, ResumeData> = {
 function ResumeBuilder() {
   const searchParams = useSearchParams();
   const [data, setData] = useState<ResumeData>(placeholderData);
-  const [selectedTemplate, setSelectedTemplate] = useState<Template>('modern');
+  const [selectedTemplate, setSelectedTemplate] = useState<Template>('creative');
   const [selectedTheme, setSelectedTheme] = useState<Theme | undefined>(undefined);
   const [suggestedCourses, setSuggestedCourses] = useState<SuggestCoursesOutput | null>(null);
   const [isSuggesting, setIsSuggesting] = useState(false);
   const { toast } = useToast();
   const formId = useId();
+  const photoInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const templateParam = searchParams.get('template') as Template;
@@ -100,13 +102,10 @@ function ResumeBuilder() {
       if (foundTheme) {
         setSelectedTheme(foundTheme);
         
-        // Use a default from sampleData if no specific logic is needed
-        // For simplicity, we'll use the first one if the title isn't passed.
         const sampleKeys = Object.keys(sampleData) as (keyof typeof sampleData)[];
         const randomSampleKey = sampleKeys[Math.floor(Math.random() * sampleKeys.length)];
         const initialData = sampleData[randomSampleKey] || placeholderData;
 
-        // If a template was also passed, override the data for that template
         setData(newTemplate ? (templateDataMapping[newTemplate] || initialData) : initialData);
       }
     } else if (newTemplate) {
@@ -132,6 +131,17 @@ function ResumeBuilder() {
   ) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
+  };
+  
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setData(prev => ({...prev, photoUrl: reader.result as string}));
+      };
+      reader.readAsDataURL(file);
+    }
   };
   
   const handleSkillsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -213,6 +223,19 @@ function ResumeBuilder() {
                 <AccordionItem value="personal">
                   <AccordionTrigger className="text-lg font-semibold"><div className="flex items-center"><SectionIcon icon={User} />Personal Details</div></AccordionTrigger>
                   <AccordionContent className="grid gap-4 p-1">
+                     <div className="flex items-center gap-4">
+                      {data.photoUrl && (
+                        <img src={data.photoUrl} alt="Profile" className="w-20 h-20 rounded-full object-cover"/>
+                      )}
+                      <div className="grid gap-2 flex-grow">
+                          <Label htmlFor="photo-upload">Profile Photo</Label>
+                          <Input id="photo-upload" type="file" accept="image/*" onChange={handlePhotoUpload} className="hidden" ref={photoInputRef} />
+                          <Button variant="outline" onClick={() => photoInputRef.current?.click()}>
+                            <Upload className="mr-2 h-4 w-4" />
+                            Upload Image
+                          </Button>
+                      </div>
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor={`${formId}-name`}>Full Name</Label>
@@ -242,10 +265,6 @@ function ResumeBuilder() {
                         <Label htmlFor={`${formId}-linkedin`}>LinkedIn</Label>
                         <Input id={`${formId}-linkedin`} name="linkedin" value={data.linkedin || ''} onChange={handleInputChange} placeholder="e.g. linkedin.com/in/username" />
                       </div>
-                    </div>
-                     <div>
-                      <Label htmlFor={`${formId}-photoUrl`}>Photo URL</Label>
-                      <Input id={`${formId}-photoUrl`} name="photoUrl" value={data.photoUrl || ''} onChange={handleInputChange} placeholder="e.g. https://your-image-url.com/photo.png" />
                     </div>
                     <div>
                       <Label htmlFor={`${formId}-description`}>Professional Summary</Label>
@@ -437,3 +456,5 @@ export default function ResumeBuilderPage() {
     </Suspense>
   );
 }
+
+    
