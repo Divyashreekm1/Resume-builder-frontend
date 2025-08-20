@@ -43,9 +43,9 @@ const sampleTitles: (keyof typeof sampleData)[] = [
 ];
 
 const templates = [
-    { name: 'classic', component: ClassicTemplate },
-    { name: 'modern', component: ModernTemplate },
-    { name: 'creative', component: CreativeTemplate },
+    { name: 'classic', component: ClassicTemplate, label: 'Classic' },
+    { name: 'modern', component: ModernTemplate, label: 'Modern' },
+    { name: 'creative', component: CreativeTemplate, label: 'Creative' },
 ];
 
 export default function SamplesPage() {
@@ -70,34 +70,66 @@ export default function SamplesPage() {
                 <h1 className="text-4xl font-bold tracking-tight">Resume Samples</h1>
                 <p className="text-muted-foreground mt-2">Browse through our collection of resume templates with various color themes. Click one to start editing!</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {themes.slice(0, 25).map((theme, index) => {
-                    const templateIndex = 0; // Always use the first template (Classic)
-                    const TemplateComponent = templates[templateIndex].component;
-                    const templateType = templates[templateIndex].name;
-                    const title = sampleTitles[index % sampleTitles.length];
-                    const data = sampleData[title] || sampleData["Software Engineer"];
 
-                    return (
-                        <div key={index} className="flex flex-col items-center gap-4 group">
-                             <div className="text-center">
-                                <h2 className="text-lg font-semibold">{theme.name}</h2>
-                                <p className="text-sm text-muted-foreground">{title}</p>
-                            </div>
-                            <Link href={`/?template=${templateType}&theme=${encodeURIComponent(theme.name)}`} className="w-full">
-                                <div className="relative w-full h-auto aspect-[1/1.414] bg-white shadow-2xl rounded-lg overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
-                                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                        <Button>
-                                            <Pencil className="mr-2 h-4 w-4" /> Edit this template
-                                        </Button>
-                                   </div>
-                                   <TemplateComponent data={data} theme={theme} isPreview={true} />
+            <section className="mb-16">
+                <h2 className="text-3xl font-bold text-center mb-6">Classic Templates</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    {themes.slice(0, 25).map((theme, index) => {
+                        const template = templates.find(t => t.name === 'classic')!;
+                        const title = sampleTitles[index % sampleTitles.length];
+                        const data = sampleData[title] || sampleData["Software Engineer"];
+
+                        return (
+                            <div key={`classic-${index}`} className="flex flex-col items-center gap-4 group">
+                                 <div className="text-center">
+                                    <h3 className="text-lg font-semibold">{theme.name}</h3>
+                                    <p className="text-sm text-muted-foreground">{title}</p>
                                 </div>
-                            </Link>
-                        </div>
-                    )
-                })}
-            </div>
+                                <Link href={`/?template=${template.name}&theme=${encodeURIComponent(theme.name)}`} className="w-full">
+                                    <div className="relative w-full h-auto aspect-[1/1.414] bg-white shadow-2xl rounded-lg overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
+                                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                            <Button>
+                                                <Pencil className="mr-2 h-4 w-4" /> Edit this template
+                                            </Button>
+                                       </div>
+                                       <template.component data={data} theme={theme} isPreview={true} />
+                                    </div>
+                                </Link>
+                            </div>
+                        )
+                    })}
+                </div>
+            </section>
+
+            <section>
+                <h2 className="text-3xl font-bold text-center mb-6">Modern Templates</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    {themes.slice(25, 50).map((theme, index) => {
+                        const template = templates.find(t => t.name === 'modern')!;
+                        const title = sampleTitles[index % sampleTitles.length];
+                        const data = sampleData[title] || sampleData["Software Engineer"];
+
+                        return (
+                            <div key={`modern-${index}`} className="flex flex-col items-center gap-4 group">
+                                 <div className="text-center">
+                                    <h3 className="text-lg font-semibold">{theme.name}</h3>
+                                    <p className="text-sm text-muted-foreground">{title}</p>
+                                </div>
+                                <Link href={`/?template=${template.name}&theme=${encodeURIComponent(theme.name)}`} className="w-full">
+                                    <div className="relative w-full h-auto aspect-[1/1.414] bg-white shadow-2xl rounded-lg overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
+                                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                            <Button>
+                                                <Pencil className="mr-2 h-4 w-4" /> Edit this template
+                                            </Button>
+                                       </div>
+                                       <template.component data={data} theme={theme} isPreview={true} />
+                                    </div>
+                                </Link>
+                            </div>
+                        )
+                    })}
+                </div>
+            </section>
         </main>
         </>
     );

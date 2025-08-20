@@ -90,4 +90,45 @@ export const themes = [
     { name: "Cadet Blue & Alice Blue", primary: '#5F9EA0', bg: '#F0F8FF', text: '#2D4A4B', sidebarBg: '#E2F0F1' },
     // 45. Rose Gold
     { name: "Rosy Brown & Seashell", primary: '#BC8F8F', bg: '#FFF5EE', text: '#644A4A', sidebarBg: '#F5EAE8' },
+    // New Themes
+    // 46. Sunset Orange
+    { name: "Sunset Orange", primary: '#FD6A02', bg: '#FFF2E6', text: '#4D2000', sidebarBg: '#FFE5CC' },
+    // 47. Pacific Blue
+    { name: "Pacific Blue", primary: '#009DC4', bg: '#E6F7FA', text: '#003E4D', sidebarBg: '#CCEEF5' },
+    // 48. Emerald Isle
+    { name: "Emerald Isle", primary: '#00A86B', bg: '#E6F9F1', text: '#00422A', sidebarBg: '#CCF2E3' },
+    // 49. Royal Amethyst
+    { name: "Royal Amethyst", primary: '#9966CC', bg: '#F4F0F9', text: '#3D2851', sidebarBg: '#EADDF2' },
+    // 50. Scarlet Letter
+    { name: "Scarlet Letter", primary: '#FF2400', bg: '#FFE9E6', text: '#4D0A00', sidebarBg: '#FFD2CC' },
+    // 51. Corporate Gray
+    { name: "Corporate Gray", primary: '#5A5A5A', bg: '#F5F5F5', text: '#222222', sidebarBg: '#EAEAEA' },
+    // 52. Vintage Wine
+    { name: "Vintage Wine", primary: '#722F37', bg: '#F9F0F1', text: '#2D1316', sidebarBg: '#F2E2E4' },
+    // 53. Fresh Lemon
+    { name: "Fresh Lemon", primary: '#FDE910', bg: '#FFFEF5', text: '#4D4705', sidebarBg: '#FFFBDD' },
+    // 54. Deep Sea
+    { name: "Deep Sea", primary: '#004B49', bg: '#E6F4F4', text: '#FFFFFF', sidebarBg: '#003332' },
+    // 55. Magenta Pop
+    { name: "Magenta Pop", primary: '#FF00FF', bg: '#FFF5FF', text: '#4D004D', sidebarBg: '#FFD6FF' },
+    // 56. Sandstone
+    { name: "Sandstone", primary: '#C2B280', bg: '#F9F7F0', text: '#4C4633', sidebarBg: '#F2EDE3' },
+    // 57. Periwinkle
+    { name: "Periwinkle", primary: '#CCCCFF', bg: '#F5F5FF', text: '#2A2A55', sidebarBg: '#EAEAFF' },
+    // 58. Chocolate Brown
+    { name: "Chocolate Brown", primary: '#7B3F00', bg: '#FAF5F0', text: '#311900', sidebarBg: '#F4EBE2' },
+    // 59. Kelly Green
+    { name: "Kelly Green", primary: '#4CBB17', bg: '#F0F9EB', text: '#1E4A09', sidebarBg: '#E2F2D9' },
+    // 60. Electric Lime
+    { name: "Electric Lime", primary: '#CCFF00', bg: '#F9FFEB', text: '#3E4D00', sidebarBg: '#F2FFCC' },
+    // 61. Powder Pink
+    { name: "Powder Pink", primary: '#FFC0CB', bg: '#FFF5F6', text: '#553337', sidebarBg: '#FFEAEF' },
+    // 62. Steel Gray
+    { name: "Steel Gray", primary: '#43464B', bg: '#F2F2F2', text: '#1C1D1E', sidebarBg: '#E4E5E6' },
+    // 63. Bright Cobalt
+    { name: "Bright Cobalt", primary: '#0047AB', bg: '#E6EEF9', text: '#001C43', sidebarBg: '#CCD9F2' },
+    // 64. Muted Clay
+    { name: "Muted Clay", primary: '#B97963', bg: '#F9F2F0', text: '#493027', sidebarBg: '#F2E8E4' },
+    // 65. Lilac Mist
+    { name: "Lilac Mist", primary: '#B695C0', bg: '#F8F4F9', text: '#473B4B', sidebarBg: '#EDDFE2' },
 ];
