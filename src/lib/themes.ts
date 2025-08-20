@@ -80,4 +80,14 @@ export const themes = [
     { name: "Firebrick & Light Coral", primary: '#B22222', bg: '#F08080', text: '#FFFFFF', sidebarBg: '#F5C9C9' },
     // 40. Aqua Marine
     { name: "Medium Aquamarine & Black", primary: '#66CDAA', bg: '#2C3E50', text: '#F0FFF0', sidebarBg: '#445C58' },
+    // 41. Royal Purple
+    { name: "Rebecca Purple & Lavender Blush", primary: '#663399', bg: '#FFF0F5', text: '#2C1A4C', sidebarBg: '#E8E0F2' },
+    // 42. Burnt Sienna
+    { name: "Sienna & Floral White", primary: '#A0522D', bg: '#FFFAF0', text: '#5C2F1A', sidebarBg: '#F5EAE2' },
+    // 43. Olive Grove
+    { name: "Olive Drab & Ivory", primary: '#6B8E23', bg: '#FFFFF0', text: '#344711', sidebarBg: '#EBF0E3' },
+    // 44. Cadet Blue
+    { name: "Cadet Blue & Alice Blue", primary: '#5F9EA0', bg: '#F0F8FF', text: '#2D4A4B', sidebarBg: '#E2F0F1' },
+    // 45. Rose Gold
+    { name: "Rosy Brown & Seashell", primary: '#BC8F8F', bg: '#FFF5EE', text: '#644A4A', sidebarBg: '#F5EAE8' },
 ];

@@ -35,12 +35,17 @@ const sampleTitles: (keyof typeof sampleData)[] = [
     "Healthcare Professional",
     "IT Support Specialist",
     "Product Manager",
+    "Nurse Practitioner",
+    "Marketing Specialist",
+    "Financial Planner",
+    "Human Resources Manager",
+    "Social Media Manager",
 ];
 
 const templates = [
-    { name: 'creative', component: CreativeTemplate },
-    { name: 'modern', component: ModernTemplate },
     { name: 'classic', component: ClassicTemplate },
+    { name: 'modern', component: ModernTemplate },
+    { name: 'creative', component: CreativeTemplate },
 ];
 
 export default function SamplesPage() {
@@ -66,8 +71,8 @@ export default function SamplesPage() {
                 <p className="text-muted-foreground mt-2">Browse through our collection of resume templates with various color themes. Click one to start editing!</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {themes.map((theme, index) => {
-                    const templateIndex = 0; // Always use the first template (Creative)
+                {themes.slice(0, 25).map((theme, index) => {
+                    const templateIndex = 0; // Always use the first template (Classic)
                     const TemplateComponent = templates[templateIndex].component;
                     const templateType = templates[templateIndex].name;
                     const title = sampleTitles[index % sampleTitles.length];
