@@ -78,4 +78,25 @@
     size: A4;
     margin: 0;
   }
+
+  .printable-area-container > *:not(.printable-area) {
+    display: none;
+  }
+
+  .printable-area {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  #resume-preview {
+    box-shadow: none;
+    border: none;
+    height: 100%;
+    width: 100%;
+    transform: scale(1);
+  }
 }
