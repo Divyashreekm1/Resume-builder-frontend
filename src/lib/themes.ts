@@ -40,4 +40,44 @@ export const themes = [
     { name: "Plum & Thistle", primary: '#8E4585', bg: '#D8BFD8', text: '#4A2E46', sidebarBg: '#F2E8F2' },
     // 20. Sunny & Bright
     { name: "Goldenrod & Lemon Chiffon", primary: '#DAA520', bg: '#FFFACD', text: '#5C4033', sidebarBg: '#F5F2E0' },
+    // 21. Fiery Sunset
+    { name: "Coral & Papaya", primary: '#FF7F50', bg: '#FFEFD5', text: '#4A2511', sidebarBg: '#FFE5B4' },
+    // 22. Ocean Deep
+    { name: "Royal Blue & Azure", primary: '#4169E1', bg: '#F0FFFF', text: '#192A56', sidebarBg: '#D6E4FF' },
+    // 23. Lavender Fields
+    { name: "Medium Purple & Lilac", primary: '#9370DB', bg: '#F8F0FF', text: '#3D2B56', sidebarBg: '#E9D6FF' },
+    // 24. Mint Chocolate Chip
+    { name: "Sea Green & Honeydew", primary: '#2E8B57', bg: '#F0FFF0', text: '#143D24', sidebarBg: '#D6F5D6' },
+    // 25. Strawberry Lemonade
+    { name: "Hot Pink & Lemon", primary: '#FF69B4', bg: '#FFFACD', text: '#5C2D43', sidebarBg: '#FFE0E9' },
+    // 26. Autumn Blaze
+    { name: "Dark Orange & Wheat", primary: '#FF8C00', bg: '#F5DEB3', text: '#5C3D00', sidebarBg: '#FFDDB0' },
+    // 27. Winter Sky
+    { name: "Steel Blue & Light Gray", primary: '#4682B4', bg: '#F5F5F5', text: '#2C3E50', sidebarBg: '#DDE8F0' },
+    // 28. Tropical Paradise
+    { name: "Turquoise & Light Yellow", primary: '#40E0D0', bg: '#FFFFE0', text: '#1B5E57', sidebarBg: '#D0F7F4' },
+    // 29. Raspberry Sorbet
+    { name: "Crimson & Pink", primary: '#DC143C', bg: '#FFF0F5', text: '#5C091A', sidebarBg: '#FFE0E6' },
+    // 30. Spring Meadow
+    { name: "Lime Green & Pale Green", primary: '#32CD32', bg: '#F0FFF0', text: '#145214', sidebarBg: '#D6F5D6' },
+    // 31. Electric Violet
+    { name: "Blue Violet & Ghost White", primary: '#8A2BE2', bg: '#F8F8FF', text: '#3A1263', sidebarBg: '#E8D8FF' },
+    // 32. Coffee & Cream
+    { name: "Saddle Brown & Ivory", primary: '#8B4513', bg: '#FFFFF0', text: '#4A2507', sidebarBg: '#F0E6D8' },
+    // 33. Cherry Blossom
+    { name: "Light Pink & Snow", primary: '#FFB6C1', bg: '#FFFAFA', text: '#6B3E46', sidebarBg: '#FFE5E8' },
+    // 34. Midnight Emerald
+    { name: "Dark Green & Silver", primary: '#006400', bg: '#F0F0F0', text: '#002D00', sidebarBg: '#D9EAD9' },
+    // 35. Peachy Keen
+    { name: "Peach & Seashell", primary: '#FFDAB9', bg: '#FFF5EE', text: '#7A4F3A', sidebarBg: '#FFEFE0' },
+    // 36. Royal Gold
+    { name: "Dark Goldenrod & Black", primary: '#B8860B', bg: '#222222', text: '#F5F5F5', sidebarBg: '#3A3A3A' },
+    // 37. Amethyst Haze
+    { name: "Medium Orchid & White", primary: '#BA55D3', bg: '#FFFFFF', text: '#5D2A68', sidebarBg: '#F0E0F5' },
+    // 38. Summer Sky
+    { name: "Deep Sky Blue & White", primary: '#00BFFF', bg: '#FFFFFF', text: '#005A7D', sidebarBg: '#E0F7FF' },
+    // 39. Ruby Red
+    { name: "Firebrick & Light Coral", primary: '#B22222', bg: '#F08080', text: '#FFFFFF', sidebarBg: '#F5C9C9' },
+    // 40. Aqua Marine
+    { name: "Medium Aquamarine & Black", primary: '#66CDAA', bg: '#2C3E50', text: '#F0FFF0', sidebarBg: '#445C58' },
 ];

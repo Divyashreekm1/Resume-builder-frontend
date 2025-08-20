@@ -3,9 +3,11 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { sampleData } from '@/lib/sample-data';
 import ModernTemplate from '@/components/templates/modern';
 import ClassicTemplate from '@/components/templates/classic';
+import CreativeTemplate from '@/components/templates/creative';
 import { LogoIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Pencil } from 'lucide-react';
@@ -35,6 +37,12 @@ const sampleTitles: (keyof typeof sampleData)[] = [
     "Product Manager",
 ];
 
+const templates = [
+    { name: 'modern', component: ModernTemplate },
+    { name: 'classic', component: ClassicTemplate },
+    { name: 'creative', component: CreativeTemplate },
+];
+
 export default function SamplesPage() {
     return (
         <>
@@ -59,7 +67,9 @@ export default function SamplesPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {themes.map((theme, index) => {
-                    const templateType = index % 2 === 0 ? 'modern' : 'classic';
+                    const templateIndex = index % templates.length;
+                    const TemplateComponent = templates[templateIndex].component;
+                    const templateType = templates[templateIndex].name;
                     const title = sampleTitles[index % sampleTitles.length];
                     const data = sampleData[title] || sampleData["Software Engineer"];
 
@@ -76,11 +86,7 @@ export default function SamplesPage() {
                                             <Pencil className="mr-2 h-4 w-4" /> Edit this template
                                         </Button>
                                    </div>
-                                   {templateType === 'modern' ? (
-                                     <ModernTemplate data={data} theme={theme} isPreview={true} />
-                                   ) : (
-                                     <ClassicTemplate data={data} theme={theme} isPreview={true} />
-                                   )}
+                                   <TemplateComponent data={data} theme={theme} isPreview={true} />
                                 </div>
                             </Link>
                         </div>

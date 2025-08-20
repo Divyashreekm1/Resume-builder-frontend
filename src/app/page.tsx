@@ -45,6 +45,7 @@ import {
   Eye,
   Github,
   Linkedin,
+  Image as ImageIcon,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -56,19 +57,22 @@ import { themes as allThemes } from '@/lib/themes';
 import { getSuggestedCourses } from './actions';
 import ClassicTemplate from '@/components/templates/classic';
 import ModernTemplate from '@/components/templates/modern';
+import CreativeTemplate from '@/components/templates/creative';
 import { LogoIcon } from '@/components/icons';
 import type { SuggestCoursesOutput } from '@/ai/flows/suggest-courses';
 
-type Template = 'modern' | 'classic';
+type Template = 'modern' | 'classic' | 'creative';
 
 const templates: { name: Template, label: string, component: React.FC<{data: ResumeData, theme?: Theme}> }[] = [
     { name: 'modern', label: 'Modern', component: ModernTemplate },
     { name: 'classic', label: 'Classic', component: ClassicTemplate },
+    { name: 'creative', label: 'Creative', component: CreativeTemplate },
 ];
 
 const templateDataMapping: Record<Template, ResumeData> = {
     modern: placeholderData,
     classic: placeholderData,
+    creative: placeholderData,
 };
 
 function ResumeBuilder() {
@@ -238,6 +242,10 @@ function ResumeBuilder() {
                         <Label htmlFor={`${formId}-linkedin`}>LinkedIn</Label>
                         <Input id={`${formId}-linkedin`} name="linkedin" value={data.linkedin || ''} onChange={handleInputChange} placeholder="e.g. linkedin.com/in/username" />
                       </div>
+                    </div>
+                     <div>
+                      <Label htmlFor={`${formId}-photoUrl`}>Photo URL</Label>
+                      <Input id={`${formId}-photoUrl`} name="photoUrl" value={data.photoUrl || ''} onChange={handleInputChange} placeholder="e.g. https://your-image-url.com/photo.png" />
                     </div>
                     <div>
                       <Label htmlFor={`${formId}-description`}>Professional Summary</Label>

@@ -1,0 +1,170 @@
+
+import type { TemplateProps } from './types';
+import { Mail, Phone, MapPin, Briefcase, GraduationCap, Lightbulb, Award, FolderKanban, Link as LinkIcon, Github, Linkedin } from 'lucide-react';
+import Image from 'next/image';
+
+const Section = ({ title, icon: Icon, children, primaryColor }: { title: string; icon?: React.ElementType, children: React.ReactNode, primaryColor?: string }) => (
+    <div className="mb-4">
+        <h2 className="text-sm font-bold uppercase tracking-wider border-b-2 pb-1 mb-2 flex items-center" style={{ color: primaryColor, borderColor: `${primaryColor}66` }}>
+             {Icon && <Icon className="h-4 w-4 mr-2" />}
+            {title}
+        </h2>
+        <div className="space-y-2">
+            {children}
+        </div>
+    </div>
+);
+
+const renderLink = (url: string) => {
+    if (!url) return '';
+    return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+};
+
+
+export default function CreativeTemplate({ data, theme, isPreview = false }: TemplateProps) {
+    const primaryColor = theme?.primary || 'hsl(var(--primary))';
+    const backgroundColor = theme?.bg || '#ffffff';
+    const textColor = theme?.text || '#333333';
+
+    return (
+        <div className="w-full h-full text-xs p-6 overflow-y-auto flex flex-col" style={{ backgroundColor: backgroundColor, color: textColor }}>
+            {/* Header */}
+            <header className="flex items-center mb-6">
+                {data.photoUrl && (
+                    <div className="mr-6 shrink-0">
+                        <Image 
+                            src={data.photoUrl} 
+                            alt={data.name}
+                            width={100} 
+                            height={100} 
+                            className="rounded-full object-cover border-4"
+                            style={{ borderColor: primaryColor }}
+                            data-ai-hint="profile photo"
+                        />
+                    </div>
+                )}
+                <div className="flex-grow">
+                    <h1 className="text-3xl font-bold" style={{ color: primaryColor }}>{data.name}</h1>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] mt-1" style={{ color: textColor }}>
+                        <p className="flex items-center"><MapPin className="h-3 w-3 mr-1.5" />{data.location}</p>
+                        <p className="flex items-center"><Mail className="h-3 w-3 mr-1.5" />{data.email}</p>
+                        <p className="flex items-center"><Phone className="h-3 w-3 mr-1.5" />{data.phone}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] mt-1">
+                        {data.linkedin && (
+                            isPreview ? (
+                                <p className="flex items-center" style={{color: primaryColor}}>
+                                    <Linkedin className="h-3 w-3 mr-1.5" />{renderLink(data.linkedin)}
+                                </p>
+                            ) : (
+                                <a href={`https://${renderLink(data.linkedin)}`} target="_blank" rel="noopener noreferrer" className="flex items-center hover:underline" style={{color: primaryColor}}>
+                                    <Linkedin className="h-3 w-3 mr-1.5" />{renderLink(data.linkedin)}
+                                </a>
+                            )
+                        )}
+                        {data.github && (
+                           isPreview ? (
+                                <p className="flex items-center" style={{color: primaryColor}}>
+                                    <Github className="h-3 w-3 mr-1.5" />{renderLink(data.github)}
+                                </p>
+                            ) : (
+                                <a href={`https://${renderLink(data.github)}`} target="_blank" rel="noopener noreferrer" className="flex items-center hover:underline" style={{color: primaryColor}}>
+                                    <Github className="h-3 w-3 mr-1.5" />{renderLink(data.github)}
+                                </a>
+                            )
+                        )}
+                    </div>
+                </div>
+            </header>
+
+            {/* Professional Summary */}
+            {data.description && (
+                <div className="mb-4">
+                    <p className="text-center text-xs italic border-t border-b py-2" style={{ borderColor: `${textColor}20` }}>{data.description}</p>
+                </div>
+            )}
+            
+            <div className="flex-grow grid grid-cols-3 gap-6">
+                <div className="col-span-2">
+                    {/* Experience */}
+                    {data.experience.length > 0 && (
+                        <Section title="Professional Experience" icon={Briefcase} primaryColor={primaryColor}>
+                            {data.experience.map(exp => (
+                                <div key={exp.id} className="mb-3">
+                                    <div className="flex justify-between items-baseline">
+                                        <h3 className="font-bold text-sm">{exp.role}</h3>
+                                        <p className="text-[11px] font-medium opacity-70">{exp.date}</p>
+                                    </div>
+                                    <p className="text-xs italic mb-1">{exp.company}</p>
+                                    <ul className="list-disc list-inside space-y-0.5 text-[11px] pl-2">
+                                        {exp.description.split('\n').map((item, i) => item.trim() && <li key={i}>{item.replace(/•/g,'').trim()}</li>)}
+                                    </ul>
+                                </div>
+                            ))}
+                        </Section>
+                    )}
+
+                    {/* Projects */}
+                    {data.projects.length > 0 && (
+                        <Section title="Projects" icon={FolderKanban} primaryColor={primaryColor}>
+                            {data.projects.map(proj => (
+                                <div key={proj.id} className="mb-2">
+                                    <h3 className="font-bold text-sm flex items-center">
+                                        {proj.name} 
+                                        {proj.link && (
+                                            isPreview ? (
+                                                <span className="font-normal ml-2" style={{color: primaryColor}}><LinkIcon className="inline h-3 w-3" /></span>
+                                            ) : (
+                                                <a href={`https://${renderLink(proj.link)}`} target="_blank" rel="noopener noreferrer" className="font-normal hover:underline ml-2" style={{color: primaryColor}}>
+                                                    <LinkIcon className="inline h-3 w-3" />
+                                                </a>
+                                            )
+                                        )}
+                                    </h3>
+                                    <p className="text-[11px]">{proj.description}</p>
+                                </div>
+                            ))}
+                        </Section>
+                    )}
+                </div>
+                <div className="col-span-1">
+                     {/* Education */}
+                    {data.education.length > 0 && (
+                        <Section title="Education" icon={GraduationCap} primaryColor={primaryColor}>
+                            {data.education.map(edu => (
+                                <div key={edu.id} className="mb-2">
+                                    <h4 className="font-bold text-sm">{edu.school}</h4>
+                                    <p className="text-[11px]">{edu.degree}</p>
+                                    <p className="text-[11px] font-medium opacity-70">{edu.date}</p>
+                                </div>
+                            ))}
+                        </Section>
+                    )}
+                    
+                    {/* Skills */}
+                    {data.skills.length > 0 && (
+                        <Section title="Skills" icon={Lightbulb} primaryColor={primaryColor}>
+                            <div className="flex flex-wrap gap-1.5">
+                                {data.skills.map(skill => (
+                                    <span key={skill} className="font-medium px-2 py-0.5 rounded-md text-[10px]" style={{ backgroundColor: `${primaryColor}33`, color: primaryColor }}>{skill}</span>
+                                ))}
+                            </div>
+                        </Section>
+                    )}
+
+                     {/* Certificates */}
+                    {data.certificates.length > 0 && (
+                        <Section title="Certificates" icon={Award} primaryColor={primaryColor}>
+                            {data.certificates.map(cert => (
+                                <div key={cert.id} className="mb-2">
+                                    <p className="text-xs"><span className="font-bold">{cert.name}</span>, <span className="italic">{cert.issuingBody}</span></p>
+                                    <p className="text-[11px] font-medium opacity-70">{cert.date}</p>
+                                </div>
+                            ))}
+                        </Section>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}

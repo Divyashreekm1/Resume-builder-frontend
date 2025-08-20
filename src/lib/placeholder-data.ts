@@ -1,3 +1,4 @@
+
 import type { ResumeData } from './types';
 
 export const placeholderData: ResumeData = {
@@ -7,6 +8,7 @@ export const placeholderData: ResumeData = {
   phone: '(123) 456-7890',
   github: 'github.com/alexdoe',
   linkedin: 'linkedin.com/in/alexdoe',
+  photoUrl: 'https://placehold.co/150x150.png',
   description:
     'Innovative and deadline-driven Software Engineer with 3+ years of experience designing and developing user-centered digital products from initial concept to final, polished deliverable.',
   experience: [
