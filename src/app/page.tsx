@@ -130,9 +130,15 @@ function ResumeBuilder() {
   };
   
   const handlePrint = () => {
-    document.body.classList.add('printing');
-    window.print();
-    document.body.classList.remove('printing');
+    const printContents = document.getElementById('resume-preview')?.innerHTML;
+    const originalContents = document.body.innerHTML;
+    if (printContents) {
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+      // We have to re-render the component to re-attach event listeners
+      window.location.reload();
+    }
   };
 
   const handleDownloadPdf = () => {
@@ -475,12 +481,12 @@ function ResumeBuilder() {
                       <Download className="mr-2 h-5 w-5" /> Download
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-full">
-                    <DropdownMenuItem onClick={handleDownloadPdf}>
+                  <DropdownMenuContent className="w-[--radix-dropdown-menu-trigger-width]">
+                    <DropdownMenuItem onClick={handleDownloadPdf} className="cursor-pointer">
                       <Download className="mr-2 h-4 w-4" />
                       <span>Save as PDF</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handlePrint}>
+                    <DropdownMenuItem onClick={handlePrint} className="cursor-pointer">
                       <Printer className="mr-2 h-4 w-4" />
                       <span>Print</span>
                     </DropdownMenuItem>
@@ -537,6 +543,3 @@ export default function ResumeBuilderPage() {
     </Suspense>
   );
 }
-
-    
-    
