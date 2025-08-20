@@ -264,7 +264,7 @@ function ResumeBuilder() {
 
   return (
     <>
-      <div className="printable-area-container">
+      <div>
         <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="container flex h-14 items-center">
             <div className="mr-4 flex items-center">
@@ -439,7 +439,7 @@ function ResumeBuilder() {
             </Card>
           </div>
 
-          <div className="sticky top-24 order-1 md:order-2 printable-area">
+          <div className="sticky top-24 order-1 md:order-2">
             <Card>
               <CardHeader>
                 <CardTitle>Preview & Download</CardTitle>
