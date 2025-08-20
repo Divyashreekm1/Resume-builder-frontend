@@ -8,7 +8,7 @@ const softwareEngineer: ResumeData = {
   phone: '(206) 555-0100',
   github: 'github.com/jamiepatel',
   linkedin: 'linkedin.com/in/jamiepatel',
-  photoUrl: 'https://placehold.co/150x150/FFF/333.png',
+  photoUrl: 'https://placehold.co/150x150.png',
   description:
     'Results-driven Software Engineer with 5+ years of experience in developing, testing, and maintaining scalable software applications. Proficient in multiple programming languages and cloud technologies.',
   experience: [
@@ -35,7 +35,7 @@ const dataAnalyst: ResumeData = {
   phone: '(312) 555-0111',
   github: 'github.com/bencarter',
   linkedin: 'linkedin.com/in/bencarter',
-  photoUrl: 'https://placehold.co/150x150/EEE/333.png',
+  photoUrl: 'https://placehold.co/150x150.png',
   description:
     'Detail-oriented Data Analyst with a passion for uncovering insights from complex datasets. Experienced in data visualization, statistical analysis, and predictive modeling.',
   experience: [
@@ -62,7 +62,7 @@ const accountant: ResumeData = {
   phone: '(212) 555-0122',
   github: 'github.com/mariagarcia',
   linkedin: 'linkedin.com/in/mariagarcia',
-  photoUrl: 'https://placehold.co/150x150/DDD/333.png?text=MG',
+  photoUrl: 'https://placehold.co/150x150.png',
   description:
     'Certified Public Accountant (CPA) with 8 years of experience in financial reporting, auditing, and tax preparation. Proven ability to manage financial operations and ensure regulatory compliance.',
   experience: [
@@ -89,7 +89,7 @@ const manager: ResumeData = {
   phone: '(213) 555-0133',
   github: 'github.com/davidlee',
   linkedin: 'linkedin.com/in/davidlee',
-  photoUrl: 'https://placehold.co/150x150/CCC/333.png?text=DL',
+  photoUrl: 'https://placehold.co/150x150.png',
   description:
     'Dynamic and motivational Manager with over 10 years of experience in leading high-performing teams to exceed business objectives. Expertise in strategic planning, project management, and operational efficiency.',
   experience: [
@@ -116,7 +116,7 @@ const executive: ResumeData = {
   phone: '(512) 555-0144',
   github: 'github.com/chenwang',
   linkedin: 'linkedin.com/in/chenwang',
-  photoUrl: 'https://placehold.co/150x150/BBB/333.png?text=CW',
+  photoUrl: 'https://placehold.co/150x150.png',
   description: 'Visionary Executive with a 15-year track record of driving growth, innovation, and profitability in the tech sector. Adept at C-level strategy, M&A, and market expansion.',
   experience: [
     {
@@ -142,7 +142,7 @@ const financeProfessional: ResumeData = {
   phone: '(617) 555-0155',
   github: 'github.com/emilyjohnson',
   linkedin: 'linkedin.com/in/emilyjohnson',
-  photoUrl: 'https://placehold.co/150x150/AAA/333.png?text=EJ',
+  photoUrl: 'https://placehold.co/150x150.png',
   description: 'Analytical Finance Professional with expertise in financial modeling, valuation, and investment analysis. Strong understanding of capital markets and corporate finance.',
   experience: [
     {
@@ -168,7 +168,7 @@ const civilEngineer: ResumeData = {
     phone: '(303) 555-0166',
     github: 'github.com/samuelgreen',
     linkedin: 'linkedin.com/in/samuelgreen',
-    photoUrl: 'https://placehold.co/150x150/999/fff.png?text=SG',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Licensed Professional Engineer (PE) specializing in structural design and project management for large-scale infrastructure projects. Proficient in AutoCAD and construction management.',
     experience: [
       {
@@ -194,7 +194,7 @@ const teacher: ResumeData = {
     phone: '(503) 555-0177',
     github: 'github.com/jessicadavis',
     linkedin: 'linkedin.com/in/jessicadavis',
-    photoUrl: 'https://placehold.co/150x150/888/fff.png?text=JD',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Dedicated and passionate High School English Teacher with 7 years of experience in curriculum development, student assessment, and creating inclusive learning environments.',
     experience: [
       {
@@ -220,7 +220,7 @@ const uxUiDesigner: ResumeData = {
     phone: '(415) 555-0188',
     github: 'github.com/oliviamartinez',
     linkedin: 'linkedin.com/in/oliviamartinez',
-    photoUrl: 'https://placehold.co/150x150/777/fff.png?text=OM',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Creative UX/UI Designer with a strong portfolio of user-centered designs for mobile and web applications. Proficient in Figma, Sketch, and Adobe Creative Suite.',
     experience: [
       {
@@ -246,7 +246,7 @@ const graphicDesigner: ResumeData = {
     phone: '(646) 555-0199',
     github: 'github.com/leochen',
     linkedin: 'linkedin.com/in/leochen',
-    photoUrl: 'https://placehold.co/150x150/666/fff.png?text=LC',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Talented Graphic Designer with expertise in branding, print design, and digital illustration. A strong conceptual thinker with a keen eye for detail and aesthetics.',
     experience: [
       {
@@ -272,7 +272,7 @@ const electricalEngineer: ResumeData = {
     phone: '(713) 555-0101',
     github: 'github.com/fatimaahmed',
     linkedin: 'linkedin.com/in/fatimaahmed',
-    photoUrl: 'https://placehold.co/150x150/555/fff.png?text=FA',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Electrical Engineer with a focus on power systems and renewable energy. Experienced in circuit design, simulation, and project implementation.',
     experience: [
       {
@@ -298,7 +298,7 @@ const mechanicalEngineer: ResumeData = {
     phone: '(313) 555-0112',
     github: 'github.com/tomkowalski',
     linkedin: 'linkedin.com/in/tomkowalski',
-    photoUrl: 'https://placehold.co/150x150/444/fff.png?text=TK',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Mechanical Engineer with extensive experience in the automotive industry, specializing in powertrain design and analysis. Proficient in SolidWorks and FEA.',
     experience: [
       {
@@ -324,7 +324,7 @@ const webDeveloper: ResumeData = {
     phone: '(416) 555-0123',
     github: 'github.com/aishakhan',
     linkedin: 'linkedin.com/in/aishakhan',
-    photoUrl: 'https://placehold.co/150x150/333/fff.png?text=AK',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Full-stack Web Developer with a knack for building beautiful and functional web applications. Expertise in the MERN stack and modern front-end frameworks.',
     experience: [
       {
@@ -350,7 +350,7 @@ const devopsEngineer: ResumeData = {
     phone: '(919) 555-0134',
     github: 'github.com/mikerodriguez',
     linkedin: 'linkedin.com/in/mikerodriguez',
-    photoUrl: 'https://placehold.co/150x150/222/fff.png?text=MR',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'DevOps Engineer passionate about automating infrastructure and streamlining the software development lifecycle. Experienced in CI/CD, containerization, and cloud infrastructure.',
     experience: [
       {
@@ -376,7 +376,7 @@ const cloudEngineer: ResumeData = {
     phone: '(602) 555-0145',
     github: 'github.com/sarahjenkins',
     linkedin: 'linkedin.com/in/sarahjenkins',
-    photoUrl: 'https://placehold.co/150x150/111/fff.png?text=SJ',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Certified Cloud Engineer with expertise in designing, deploying, and managing applications on Google Cloud Platform (GCP). Skilled in infrastructure as code and serverless architectures.',
     experience: [
       {
@@ -402,7 +402,7 @@ const technologyConsultant: ResumeData = {
     phone: '(404) 555-0156',
     github: 'github.com/christhompson',
     linkedin: 'linkedin.com/in/christhompson',
-    photoUrl: 'https://placehold.co/150x150/F00/fff.png?text=CT',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Strategic Technology Consultant with a talent for bridging the gap between business needs and technical solutions. Experience advising Fortune 500 companies on digital transformation.',
     experience: [
       {
@@ -428,7 +428,7 @@ const salesAndMarketing: ResumeData = {
     phone: '(305) 555-0167',
     github: 'github.com/laurabailey',
     linkedin: 'linkedin.com/in/laurabailey',
-    photoUrl: 'https://placehold.co/150x150/0F0/fff.png?text=LB',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Results-oriented Sales & Marketing professional with a proven track record of driving revenue growth and market share. Expertise in digital marketing, lead generation, and CRM.',
     experience: [
       {
@@ -454,7 +454,7 @@ const healthcareProfessional: ResumeData = {
     phone: '(215) 555-0178',
     github: 'github.com/robertmiller',
     linkedin: 'linkedin.com/in/robertmiller',
-    photoUrl: 'https://placehold.co/150x150/00F/fff.png?text=RM',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Compassionate and dedicated Registered Nurse with over 12 years of experience in critical care and emergency medicine. Committed to providing high-quality patient care.',
     experience: [
       {
@@ -480,7 +480,7 @@ const itSupportSpecialist: ResumeData = {
     phone: '(214) 555-0189',
     github: 'github.com/kevinwilliams',
     linkedin: 'linkedin.com/in/kevinwilliams',
-    photoUrl: 'https://placehold.co/150x150/FF0/333.png?text=KW',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Customer-focused IT Support Specialist with a knack for troubleshooting complex technical issues. Proficient in hardware, software, and network support.',
     experience: [
       {
@@ -506,7 +506,7 @@ const productManager: ResumeData = {
     phone: '(408) 555-0190',
     github: 'github.com/rachelkim',
     linkedin: 'linkedin.com/in/rachelkim',
-    photoUrl: 'https://placehold.co/150x150/F0F/333.png?text=RK',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Data-driven Product Manager with a strong technical background and a proven ability to ship successful products. Skilled in agile development, user research, and product strategy.',
     experience: [
       {
@@ -532,7 +532,7 @@ const nursePractitioner: ResumeData = {
     phone: '(215) 555-0180',
     github: 'github.com/susanmiller',
     linkedin: 'linkedin.com/in/susanmiller',
-    photoUrl: 'https://placehold.co/150x150/E8DAEF/333.png?text=SM',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Dedicated Nurse Practitioner with 10 years of experience in family medicine. Committed to providing comprehensive and compassionate patient care.',
     experience: [
         {
@@ -558,7 +558,7 @@ const marketingSpecialist: ResumeData = {
     phone: '(512) 555-0191',
     github: 'github.com/danielbrown',
     linkedin: 'linkedin.com/in/danielbrown',
-    photoUrl: 'https://placehold.co/150x150/D5F5E3/333.png?text=DB',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Creative and analytical Marketing Specialist with experience in developing and executing successful marketing campaigns across various channels.',
     experience: [
         {
@@ -584,7 +584,7 @@ const financialPlanner: ResumeData = {
     phone: '(704) 555-0192',
     github: 'github.com/jessicawhite',
     linkedin: 'linkedin.com/in/jessicawhite',
-    photoUrl: 'https://placehold.co/150x150/FCF3CF/333.png?text=JW',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Certified Financial Planner (CFP) dedicated to helping individuals and families achieve their financial goals through personalized financial planning and investment advice.',
     experience: [
         {
@@ -610,7 +610,7 @@ const humanResourcesManager: ResumeData = {
     phone: '(312) 555-0193',
     github: 'github.com/michaelclark',
     linkedin: 'linkedin.com/in/michaelclark',
-    photoUrl: 'https://placehold.co/150x150/D6EAF8/333.png?text=MC',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Experienced Human Resources Manager with a strong background in employee relations, talent acquisition, and performance management. SHRM-CP certified.',
     experience: [
         {
@@ -636,7 +636,7 @@ const socialMediaManager: ResumeData = {
     phone: '(213) 555-0194',
     github: 'github.com/sophiarodriguez',
     linkedin: 'linkedin.com/in/sophiarodriguez',
-    photoUrl: 'https://placehold.co/150x150/FADBD8/333.png?text=SR',
+    photoUrl: 'https://placehold.co/150x150.png',
     description: 'Creative and strategic Social Media Manager with a proven track record of growing online communities and driving brand engagement for consumer brands.',
     experience: [
         {
@@ -656,29 +656,29 @@ const socialMediaManager: ResumeData = {
 };
 
 export const sampleData = {
-    "Software Engineer": softwareEngineer,
-    "Data Analyst": dataAnalyst,
-    "Accountant": accountant,
-    "Manager": manager,
-    "Executive": executive,
-    "Finance Professional": financeProfessional,
-    "Civil Engineer": civilEngineer,
-    "Teacher": teacher,
-    "UX/UI Designer": uxUiDesigner,
-    "Graphic Designer": graphicDesigner,
-    "Electrical Engineer": electricalEngineer,
-    "Mechanical Engineer": mechanicalEngineer,
-    "Web Developer": webDeveloper,
-    "DevOps Engineer": devopsEngineer,
-    "Cloud Engineer": cloudEngineer,
-    "Technology Consultant": technologyConsultant,
-    "Sales & Marketing": salesAndMarketing,
-    "Healthcare Professional": healthcareProfessional,
-    "IT Support Specialist": itSupportSpecialist,
-    "Product Manager": productManager,
-    "Nurse Practitioner": nursePractitioner,
-    "Marketing Specialist": marketingSpecialist,
-    "Financial Planner": financialPlanner,
-    "Human Resources Manager": humanResourcesManager,
-    "Social Media Manager": socialMediaManager,
+    "Software Engineer": { ...softwareEngineer, photoUrl: 'https://placehold.co/150x150/777/fff.png' },
+    "Data Analyst": { ...dataAnalyst, photoUrl: 'https://placehold.co/150x150/888/fff.png' },
+    "Accountant": { ...accountant, photoUrl: 'https://placehold.co/150x150/999/fff.png' },
+    "Manager": { ...manager, photoUrl: 'https://placehold.co/150x150/aaa/fff.png' },
+    "Executive": { ...executive, photoUrl: 'https://placehold.co/150x150/bbb/fff.png' },
+    "Finance Professional": { ...financeProfessional, photoUrl: 'https://placehold.co/150x150/ccc/fff.png' },
+    "Civil Engineer": { ...civilEngineer, photoUrl: 'https://placehold.co/150x150/ddd/fff.png' },
+    "Teacher": { ...teacher, photoUrl: 'https://placehold.co/150x150/eee/333.png' },
+    "UX/UI Designer": { ...uxUiDesigner, photoUrl: 'https://placehold.co/150x150/111/fff.png' },
+    "Graphic Designer": { ...graphicDesigner, photoUrl: 'https://placehold.co/150x150/222/fff.png' },
+    "Electrical Engineer": { ...electricalEngineer, photoUrl: 'https://placehold.co/150x150/333/fff.png' },
+    "Mechanical Engineer": { ...mechanicalEngineer, photoUrl: 'https://placehold.co/150x150/444/fff.png' },
+    "Web Developer": { ...webDeveloper, photoUrl: 'https://placehold.co/150x150/555/fff.png' },
+    "DevOps Engineer": { ...devopsEngineer, photoUrl: 'https://placehold.co/150x150/666/fff.png' },
+    "Cloud Engineer": { ...cloudEngineer, photoUrl: 'https://placehold.co/150x150/abc/fff.png' },
+    "Technology Consultant": { ...technologyConsultant, photoUrl: 'https://placehold.co/150x150/def/fff.png' },
+    "Sales & Marketing": { ...salesAndMarketing, photoUrl: 'https://placehold.co/150x150/fed/fff.png' },
+    "Healthcare Professional": { ...healthcareProfessional, photoUrl: 'https://placehold.co/150x150/cba/fff.png' },
+    "IT Support Specialist": { ...itSupportSpecialist, photoUrl: 'https://placehold.co/150x150/987/fff.png' },
+    "Product Manager": { ...productManager, photoUrl: 'https://placehold.co/150x150/654/fff.png' },
+    "Nurse Practitioner": { ...nursePractitioner, photoUrl: 'https://placehold.co/150x150/321/fff.png' },
+    "Marketing Specialist": { ...marketingSpecialist, photoUrl: 'https://placehold.co/150x150/135/fff.png' },
+    "Financial Planner": { ...financialPlanner, photoUrl: 'https://placehold.co/150x150/246/fff.png' },
+    "Human Resources Manager": { ...humanResourcesManager, photoUrl: 'https://placehold.co/150x150/864/fff.png' },
+    "Social Media Manager": { ...socialMediaManager, photoUrl: 'https://placehold.co/150x150/975/fff.png' },
 };

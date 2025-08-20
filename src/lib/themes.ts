@@ -131,4 +131,25 @@ export const themes = [
     { name: "Muted Clay", primary: '#B97963', bg: '#F9F2F0', text: '#493027', sidebarBg: '#F2E8E4' },
     // 65. Lilac Mist
     { name: "Lilac Mist", primary: '#B695C0', bg: '#F8F4F9', text: '#473B4B', sidebarBg: '#EDDFE2' },
+    // 66. Professional Navy
+    { name: "Professional Navy", primary: '#001f3f', bg: '#FFFFFF', text: '#333333', sidebarBg: '#F0F2F5' },
+    // 67. Deep Burgundy
+    { name: "Deep Burgundy", primary: '#800020', bg: '#FFF5F7', text: '#33000D', sidebarBg: '#F9E5EA' },
+    // 68. Olive Green
+    { name: "Olive Green", primary: '#556B2F', bg: '#F7F8F3', text: '#222B13', sidebarBg: '#EBEFDE' },
+    // 69. Teal Blue
+    { name: "Teal Blue", primary: '#367588', bg: '#F0F7F8', text: '#162F36', sidebarBg: '#E3EDF0' },
+    // 70. Dark Slate Gray
+    { name: "Dark Slate Gray", primary: '#2F4F4F', bg: '#F5F7F7', text: '#132020', sidebarBg: '#EAEFEF' },
+    // 71. Goldenrod Yellow
+    { name: "Goldenrod Yellow", primary: '#DAA520', bg: '#FFFBF0', text: '#57420D', sidebarBg: '#FFF5D9' },
+    // 72. Royal Fuchsia
+    { name: "Royal Fuchsia", primary: '#CA2C92', bg: '#FCF0F7', text: '#50123A', sidebarBg: '#F8E0EF' },
+    // 73. Forest Green
+    { name: "Forest Green", primary: '#228B22', bg: '#F0F8F0', text: '#0E380E', sidebarBg: '#E3F0E3' },
+    // 74. Bright Orange
+    { name: "Bright Orange", primary: '#FFA500', bg: '#FFF8E6', text: '#664200', sidebarBg: '#FFF0CC' },
+    // 75. Deep Indigo
+    { name: "Deep Indigo", primary: '#4B0082', bg: '#F3E6FC', text: '#1E0034', sidebarBg: '#E9D9F7' },
 ];
+
